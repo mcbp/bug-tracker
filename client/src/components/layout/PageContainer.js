@@ -1,10 +1,12 @@
 import React from 'react'
 
 const PageContainer = props => {
+
+  const { children, title } = props
   return (
     <div className="section">
-      {props.title && <h1>{props.title}</h1>}
-      {props.children}
+      {title && <h1>{title}</h1>}
+      {children}
     </div>
   )
 }

@@ -5,7 +5,7 @@ function tokenAuth(req, res, next) {
 
   // Check for token
   if (!token) {
-    return res.status(401).json({msg: 'No token, authorisation denied'})
+    return res.status(401).json({msg: ['You must be signed in to perform this action']})
   }
 
   try {
@@ -16,7 +16,7 @@ function tokenAuth(req, res, next) {
     // Call next middleware
     next()
   } catch(e) {
-    res.status(400).json({msg: 'Token is invalid'})
+    res.status(400).json({msg: ['You do not have permission to perform this action']})
   }
 }
 

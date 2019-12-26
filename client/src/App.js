@@ -8,9 +8,11 @@ import { loadUser } from './actions/authActions'
 import Navbar from './components/layout/Navbar'
 import Sidebar from './components/layout/Sidebar'
 import PrivateRoute from './components/routes/PrivateRoute'
+import Dashboard from './components/routes/Dashboard'
 import Login from './components/routes/Login'
 import Register from './components/routes/Register'
 import Profile from './components/routes/profile/Profile'
+import Project from './components/routes/projects/Project'
 
 const Header = styled.header`
   padding-left: 300px;
@@ -44,12 +46,11 @@ const App = props => {
       <Main>
         <div className="container">
           <Switch>
-            <Route exact path="/">
-              home
-            </Route>
+            <Route exact path="/" component={Dashboard}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <PrivateRoute path="/profile" component={Profile}/>
+            <Route path="/projects" component={Project}/>
           </Switch>
         </div>
       </Main>

@@ -8,7 +8,9 @@ body, html {
   background-color: #f9f9f9;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -67,6 +69,9 @@ nav .brand-logo {
 .btn {
   background-color: #67d8cd;
 }
+.btn.reddish {background-color: #d66853;}
+.btn.reddish:hover {background-color: #c6482f;}
+.btn.reddish:focus {background-color: #a9422d;}
 
 .module {
   position: relative;
@@ -75,6 +80,11 @@ nav .brand-logo {
   background-color: #fff;
   max-width: 600px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 2px;
+}
+
+.module.full-width {
+  max-width: 100%;
 }
 
 @keyframes fadeIn {

@@ -88,7 +88,7 @@ export const logout = () => {
 }
 
 export const rename = (name) => (dispatch, getState) => {
-  console.log(name)
+
   axios.get('/api/auth/user', tokenConfig(getState))
     .then(res => {
       const body = JSON.stringify({...res.data, ...name})
