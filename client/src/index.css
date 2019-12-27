@@ -46,6 +46,9 @@ nav .brand-logo {
   color: #fff;
   transition: all 200ms ease;
 }
+#sidebar > li > a {
+  font-size: 16px;
+}
 #sidebar > li > a:hover  {
   background-color: #fff;
   color: #3590f3;
@@ -55,6 +58,11 @@ nav .brand-logo {
 }
 #sidebar > li > a:hover > i {
   color: #3590f3;
+}
+#sidebar .divider {
+  margin: 10px 0;
+  background-color: #fff;
+  height: 1px;
 }
 
 .switch-wrapper {
@@ -85,6 +93,10 @@ nav .brand-logo {
 
 .module.full-width {
   max-width: 100%;
+}
+
+.collapsible-body {
+  padding: 0 !important;
 }
 
 @keyframes fadeIn {

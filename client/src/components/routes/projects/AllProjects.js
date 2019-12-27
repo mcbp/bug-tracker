@@ -16,7 +16,7 @@ const AllProjects = props => {
 
   return (
     <PageContainer title="Projects">
-      <ExpandingModule title="Create a new project" icon="add_circle_outline">
+      <ExpandingModule title="Create a new project" icon="add_circle_outline" color="#67d8cd">
         <NewProject/>
       </ExpandingModule>
       <Table

@@ -19,7 +19,7 @@ const Table = props => {
   `
   const Th = styled.th`
     font-family: 'Alata';
-    font-size: 20px;
+    font-size: 18px;
     font-weight: normal;
     padding: 15px;
   `

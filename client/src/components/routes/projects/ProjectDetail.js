@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import PageContainer from '../../layout/PageContainer'
 import EditProject from './EditProject'
 import DeleteProject from './DeleteProject'
 import ExpandingModule from '../../bits/ExpandingModule'
+import AllTickets from '../tickets/AllTickets'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getCurrentProject, removeCurrentProject } from '../../../actions/projectActions'
@@ -12,12 +14,27 @@ const ProjectDetail = props => {
   const { getCurrentProject, currentProject, removeCurrentProject,
     match:{params:{slug}} } = props
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const Description = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 30px;
     padding: 10px 0;
     font-size: 16px;
     border-bottom: 1px solid #ccc;
   `
+  const BackIcon = styled.div`
+    line-height: 16px;
+    font-size: 20px;
+    vertical-align: middle;
+    margin-right: 4px;
+  `
+
+  useEffect(() => {
+    if (currentProject) setIsLoading(false)
+  }, [isLoading, currentProject])
 
   useEffect(() => {
     getCurrentProject(slug)
@@ -34,6 +51,8 @@ const ProjectDetail = props => {
     }
   }, [slug, currentProject])
 
+  if (!currentProject) return null
+
   if (currentProject.error) return (
     <PageContainer title={"404 Not found"}>
       <div>{currentProject.error}</div>
@@ -42,7 +61,12 @@ const ProjectDetail = props => {
 
   return (
     <PageContainer title={currentProject.name}>
-      <Description>{currentProject.description}</Description>
+      <Description>
+        <div>{currentProject.description}</div>
+        <Link to="/projects/">
+            <BackIcon className="material-icons">arrow_back</BackIcon>
+        <span>Back to projects</span></Link>
+      </Description>
 
       <ExpandingModule title="Edit project details" icon="edit" color="#67d8cd">
         <EditProject />
@@ -51,6 +75,10 @@ const ProjectDetail = props => {
       <ExpandingModule title="Delete project" icon="delete_forever" color="#d66853">
         <DeleteProject />
       </ExpandingModule>
+
+      <PageContainer title={"Tickets for this project"} small={true}>
+        <AllTickets projectFilter={currentProject._id}/>
+      </PageContainer>
 
     </PageContainer>
   )

@@ -26,7 +26,7 @@ const DeleteProject = props => {
   }, [clearErrors])
 
   const instructions = [
-    'Please type the current project name to confirm. This cannot be undone.'
+    'Please type the current project name to confirm the deletion. This cannot be undone.'
   ]
 
   return (

@@ -13,6 +13,7 @@ import Login from './components/routes/Login'
 import Register from './components/routes/Register'
 import Profile from './components/routes/profile/Profile'
 import Project from './components/routes/projects/Project'
+import Ticket from './components/routes/tickets/Ticket'
 
 const Header = styled.header`
   padding-left: 300px;
@@ -51,6 +52,7 @@ const App = props => {
             <Route path="/register" component={Register}/>
             <PrivateRoute path="/profile" component={Profile}/>
             <Route path="/projects" component={Project}/>
+            <Route path="/tickets" component={Ticket}/>
           </Switch>
         </div>
       </Main>

@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import ErrorMessage from '../../bits/ErrorMessage'
+import FormInstructions from '../../bits/FormInstructions'
 import { connect } from 'react-redux'
 import { createProject } from '../../../actions/projectActions'
 import { clearErrors } from '../../../actions/errorActions'
@@ -25,9 +26,14 @@ const NewProject = props => {
     return () => clearErrors()
   }, [clearErrors])
 
+  const instructions = [
+    'Create a new project. Tickets can be assigned to individual projects.'
+  ]
+
   return (
     <Fragment>
 
+      <FormInstructions instructions={instructions}/>
       { msg && <ErrorMessage msg={msg} />}
 
       <form className="col s12">
