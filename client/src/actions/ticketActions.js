@@ -8,11 +8,13 @@ import {
 import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 
-export const loadTickets = (project) => (dispatch) => {
+export const loadTickets = (project, search) => (dispatch) => {
 
   dispatch({ type: TICKETS_LOADING })
 
-  const url = project ? `/api/tickets?project=${project}` : `/api/tickets`
+  let url = `/api/tickets?`
+  if (project) url += `project=${project}&`
+  if (search) url += `search=${search}&`
 
   axios.get(url)
     .then(res => dispatch({

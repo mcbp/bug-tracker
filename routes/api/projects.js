@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     .then(project => res.json(project))
 })
 
-// @route   GET api/projects
+// @route   GET api/projects/:slug
 // @desc    Get one project by slug
 // @access  Public
 router.get('/:slug', (req, res) => {
@@ -65,7 +65,7 @@ router.post('/', tokenAuth, projectValidation, (req, res) => {
 
 })
 
-// @route   POST api/projects
+// @route   POST api/projects/edit
 // @desc    Edit a project
 // @access  Private
 router.post('/edit', tokenAuth, projectValidation, (req, res) => {
@@ -89,10 +89,10 @@ router.post('/edit', tokenAuth, projectValidation, (req, res) => {
     })
 })
 
-// @route   POST api/projects
+// @route   POST api/projects/delete
 // @desc    Delete a project
 // @access  Private
-router.post('/delete', projectValidation, (req, res) => {
+router.post('/delete', tokenAuth, projectValidation, (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})
@@ -105,6 +105,17 @@ router.post('/delete', projectValidation, (req, res) => {
     .then(project => {
       if (!project) return res.status(400).json({msg: ['Project name incorrect']})
       res.json(project)
+    })
+})
+
+// @route   GET api/projects/list/name
+// @desc    Get a list of all project names
+// @access  Public
+router.get('/list/name', (req, res) => {
+  Project.find({})
+    .then(projects => {
+      const list = projects.map(({name}) => ({name}))
+      res.json(list)
     })
 })
 

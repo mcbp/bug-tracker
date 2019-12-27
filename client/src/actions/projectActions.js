@@ -92,15 +92,9 @@ export const editProject = (_id, name, description) => (dispatch, getState) => {
 
 export const deleteProject = (_id, name) => (dispatch, getState) => {
 
-  const config = {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  }
-
   const body = JSON.stringify({_id, name})
 
-  axios.post(`/api/projects/delete`, body, config)
+  axios.post(`/api/projects/delete`, body, tokenConfig(getState))
     .then(res => {
       console.log(res)
       dispatch({

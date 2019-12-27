@@ -22,7 +22,7 @@ const TicketSchema = new Schema({
   },
   ticket_type: {
     type: String,
-    enum: ['Bugs/Errors', 'Feature Requests', 'Other Comments']
+    enum: ['Bugs/Errors', 'Feature Requests', 'Comments/Misc']
     //required: true
   },
   priority: {

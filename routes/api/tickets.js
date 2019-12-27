@@ -10,9 +10,17 @@ const Ticket = require('../../models/Ticket')
 // @access  Public
 router.get('/', (req, res) => {
 
-  const { project } = req.query
+  const { search, project } = req.query
 
-  if (project) {
+  if (search && project) {
+    Ticket.find({title: {"$regex": search}, project}).populate("project")
+      .then(tickets => res.json(tickets))
+  }
+  else if (search) {
+    Ticket.find({title: {"$regex": search}}).populate("project")
+      .then(tickets => res.json(tickets))
+  }
+  else if (project) {
     Ticket.find({project}).populate("project")
       .then(tickets => res.json(tickets))
   }

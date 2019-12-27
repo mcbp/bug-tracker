@@ -99,6 +99,28 @@ nav .brand-logo {
   padding: 0 !important;
 }
 
+.select-wrapper *,
+#search {
+  font-size: 15px !important;
+}
+.select-wrapper input[type=text].select-dropdown:focus + label,
+.input-field input[type=text]#search:focus + label {
+  color: #b886f4;
+}
+.input-field input[type=text].select-dropdown:focus,
+.input-field input[type=text]#search:focus {
+  border-bottom: 1px solid #b886f4;
+  box-shadow: 0 1px 0 0 #b886f4;
+}
+.dropdown-content li > a, .dropdown-content li > span {
+  color: #b886f4;
+}
+.icon-suffix {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

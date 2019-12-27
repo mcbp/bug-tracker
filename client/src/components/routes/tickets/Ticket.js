@@ -1,14 +1,12 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PageContainer from '../../layout/PageContainer'
-import AllTickets from './AllTickets'
+import TicketHome from './TicketHome'
 
 const Ticket = props => {
   return (
     <Switch>
-      <PageContainer title="Tickets">
-        <Route exact path='/tickets' component={AllTickets}/>
-      </PageContainer>
+      <Route exact path='/tickets' component={TicketHome}/>
       <Route path='/tickets/:slug' component={""}/>
     </Switch>
   )

@@ -22,7 +22,7 @@ const ExpandingModule = props => {
 
   useEffect(() => {
     const elem = collapsible.current
-    var instance = M.Collapsible.init(elem, {
+    M.Collapsible.init(elem, {
       accordion: false
     })
   }, [])

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment'
 import PageContainer from '../../layout/PageContainer'
 import EditProject from './EditProject'
 import DeleteProject from './DeleteProject'
@@ -20,9 +21,8 @@ const ProjectDetail = props => {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 10px 0;
-    font-size: 16px;
     border-bottom: 1px solid #ccc;
   `
   const BackIcon = styled.div`
@@ -76,8 +76,17 @@ const ProjectDetail = props => {
         <DeleteProject />
       </ExpandingModule>
 
+      <Description>
+        <div>Last updated: <Moment date={currentProject.last_updated} format="DD MMM YYYY HH:mm"/></div>
+        <div>Created: <Moment date={currentProject.creation_date} format="DD MMM YYYY HH:mm"/></div>
+      </Description>
+
       <PageContainer title={"Tickets for this project"} small={true}>
-        <AllTickets projectFilter={currentProject._id}/>
+        <AllTickets
+          projectFilter={currentProject._id}
+          showSearch
+          headerColor={'#b886f4'}
+        />
       </PageContainer>
 
     </PageContainer>
