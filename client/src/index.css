@@ -61,8 +61,8 @@ nav .brand-logo {
 }
 #sidebar .divider {
   margin: 10px 0;
-  background-color: #fff;
-  height: 1px;
+  height: 0;
+  border-bottom: 1px solid #fff;
 }
 
 .switch-wrapper {
@@ -80,6 +80,9 @@ nav .brand-logo {
 .btn.reddish {background-color: #d66853;}
 .btn.reddish:hover {background-color: #c6482f;}
 .btn.reddish:focus {background-color: #a9422d;}
+.btn.purp {background-color: #b886f4;}
+.btn.purp:hover {background-color: #a160f0;}
+.btn.purp:focus {background-color: #9349ee;}
 
 .module {
   position: relative;
@@ -100,15 +103,18 @@ nav .brand-logo {
 }
 
 .select-wrapper *,
-#search {
+#search,
+.purple-form input {
   font-size: 15px !important;
 }
 .select-wrapper input[type=text].select-dropdown:focus + label,
-.input-field input[type=text]#search:focus + label {
+.input-field input[type=text]#search:focus + label,
+.purple-form .input-field input[type=text]:focus + label {
   color: #b886f4;
 }
 .input-field input[type=text].select-dropdown:focus,
-.input-field input[type=text]#search:focus {
+.input-field input[type=text]#search:focus,
+.purple-form .input-field input[type=text]:focus {
   border-bottom: 1px solid #b886f4;
   box-shadow: 0 1px 0 0 #b886f4;
 }

@@ -3,7 +3,9 @@ import {
   TICKETS_LOADING,
   TICKETS_LOADED,
   TICKETS_LOAD_FAIL,
-  CLEAR_TICKETS
+  CLEAR_TICKETS,
+  CREATE_TICKET_SUCCESS,
+  CREATE_TICKET_FAIL
 } from '../actions/types'
 import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
@@ -33,4 +35,24 @@ export const clearTickets = () => (dispatch) => {
   dispatch({
     type: CLEAR_TICKETS
   })
+}
+
+export const createTicket = (title, description, submitter, project,
+  ticketType, priority) => (dispatch, getState) => {
+
+  const body = JSON.stringify({title, description, submitter, project, ticketType, priority})
+
+  axios.post('/api/tickets', body, tokenConfig(getState))
+    .then(res => dispatch({
+        type: CREATE_TICKET_SUCCESS,
+        payload: res.data
+      })
+    )
+    .then(() => dispatch(loadTickets()))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_TICKET_FAIL'))
+      dispatch({
+        type: CREATE_TICKET_FAIL
+      })
+    })
 }

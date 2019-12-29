@@ -69,8 +69,6 @@ const Register = props => {
               />
               <label htmlFor="name">Name</label>
             </div>
-          </div>
-          <div className="row">
             <div className="input-field col s12">
               <input id="email" type="email" className="validate"
                 value={email}
@@ -78,8 +76,6 @@ const Register = props => {
               />
               <label htmlFor="email">Email</label>
             </div>
-          </div>
-          <div className="row">
             <div className="input-field col s12">
               <input id="password" type="password" className="validate"
                 value={password}

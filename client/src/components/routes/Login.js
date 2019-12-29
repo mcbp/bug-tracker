@@ -62,8 +62,6 @@ const Login = props => {
               />
               <label htmlFor="email">Email</label>
             </div>
-          </div>
-          <div className="row">
             <div className="input-field col s12">
               <input id="password" type="password" className="validate"
                 value={password}

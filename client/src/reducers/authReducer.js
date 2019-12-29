@@ -17,7 +17,7 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: false,
   isLoading: false,
-  user: null
+  user: {_id: null, name: null, email: null}
 }
 
 const authReducer = (state = initialState, action) => {
@@ -59,7 +59,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         isLoading: false,
-        user: null
+        user: {_id: null, name: null, email: null}
       }
     case RENAME_FAIL:
     case REPASSWORD_FAIL:

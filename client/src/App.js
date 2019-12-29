@@ -14,6 +14,7 @@ import Register from './components/routes/Register'
 import Profile from './components/routes/profile/Profile'
 import Project from './components/routes/projects/Project'
 import Ticket from './components/routes/tickets/Ticket'
+import Footer from './components/layout/Footer'
 
 const Header = styled.header`
   padding-left: 300px;
@@ -26,6 +27,7 @@ const Main = styled.main`
   @media (max-width: 992px) {
     padding-left: 0;
   }
+  margin-bottom: 70px;
 `
 
 const App = props => {
@@ -56,6 +58,8 @@ const App = props => {
           </Switch>
         </div>
       </Main>
+
+      <Footer />
 
     </Router>
   )

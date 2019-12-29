@@ -13,11 +13,11 @@ router.get('/', (req, res) => {
   const { search, project } = req.query
 
   if (search && project) {
-    Ticket.find({title: {"$regex": search}, project}).populate("project")
+    Ticket.find({title: {"$regex": search, "$options" : "i"}, project}).populate("project")
       .then(tickets => res.json(tickets))
   }
   else if (search) {
-    Ticket.find({title: {"$regex": search}}).populate("project")
+    Ticket.find({title: {"$regex": search, "$options" : "i"}}).populate("project")
       .then(tickets => res.json(tickets))
   }
   else if (project) {
@@ -31,22 +31,41 @@ router.get('/', (req, res) => {
 
 })
 
+// Validation middleware
+const ticketValidation = [
+  check('title')
+    .not().isEmpty().trim().escape().withMessage('Ticket title is required'),
+  check('description')
+    .not().isEmpty().trim().escape().withMessage('Description is required'),
+  check('submitter')
+    .not().isEmpty().trim().escape().withMessage('You must be signed in to submit a ticket'),
+  check('project')
+    .not().isEmpty().trim().escape().withMessage('Project is required'),
+  check('ticketType')
+    .not().isEmpty().trim().escape().withMessage('Ticket type is required'),
+  check('priority')
+    .not().isEmpty().trim().escape().withMessage('Priority is required')
+]
+
 // @route   POST api/projects
 // @desc    Create a new ticket
 // @access  Private
-router.post('/', (req, res) => {
+router.post('/', tokenAuth, ticketValidation, (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({msg: errors.array().map(err => err['msg'])})
+  }
 
-  const { title, project } = req.body
+  const { title, description, submitter, project, ticketType, priority } = req.body
 
   const newTicket = new Ticket({
-    title, project
+    title, description, submitter, project, ticketType, priority, status: "Open"
   })
 
   newTicket.save()
     .then(ticket => {
       res.json(ticket)
     })
-
 })
 
 module.exports = router

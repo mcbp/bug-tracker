@@ -48,7 +48,7 @@ const AllTickets = props => {
       <input id="search" type="text" placeholder=""
         onChange={e => setSearchQuery(e.target.value)}
       />
-      <label for="search">Search tickets</label>
+      <label htmlFor="search">Search tickets</label>
     </div>
   )
 

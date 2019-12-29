@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../bits/Logo'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../actions/authActions'
@@ -7,6 +8,8 @@ const Sidebar = props => {
 
   return (
     <ul id="sidebar" className="sidenav sidenav-fixed sidenav-close">
+
+      <Logo />
 
       { !props.isAuthenticated &&
       <li><Link to="/login"><i className="material-icons">vpn_key</i>Login</Link></li>}

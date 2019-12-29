@@ -39,7 +39,7 @@ const NewProject = props => {
       <form className="col s12">
 
         <div className="input-field col s12">
-          <input id="name" type="text" className="validate"
+          <input id="name" type="text"
             value={name}
             onChange={e => setName(e.target.value)}
           />
@@ -47,7 +47,7 @@ const NewProject = props => {
         </div>
 
         <div className="input-field col s12">
-          <input id="description" type="text" className="validate"
+          <input id="description" type="text"
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
