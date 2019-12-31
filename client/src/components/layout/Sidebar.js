@@ -20,7 +20,7 @@ const Sidebar = props => {
       { !props.isAuthenticated &&
       <li><div className="divider"></div></li>}
 
-      <li><Link to="/"><i className="material-icons">home</i>Dashboard</Link></li>
+      <li><Link to="/"><i className="material-icons">dashboard</i>Dashboard</Link></li>
 
       <li><Link to="/profile"><i className="material-icons">person</i>Profile</Link></li>
 

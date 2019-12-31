@@ -78,7 +78,7 @@ router.post('/edit', tokenAuth, projectValidation, (req, res) => {
   const slug = convertToSlug(name)
 
   // Check if already exists
-  Project.find({slug: slug, _id: {$ne: _id}})
+  Project.findOne({_id})
     .then(project => {
       if (project && project.length) return res.status(400).json({msg: ['Project already exists']})
       // Find project and update

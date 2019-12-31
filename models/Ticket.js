@@ -12,7 +12,7 @@ const TicketSchema = new Schema({
   },
   submitter: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'user'
     //required: true
   },
   project: {
@@ -20,7 +20,7 @@ const TicketSchema = new Schema({
     ref: 'project'
     //required: true
   },
-  ticket_type: {
+  ticketType: {
     type: String,
     enum: ['Bugs/Errors', 'Feature Requests', 'Comments/Misc']
     //required: true

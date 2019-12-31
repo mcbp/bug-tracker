@@ -4,7 +4,14 @@ import {
   TICKETS_LOAD_FAIL,
   CLEAR_TICKETS,
   CREATE_TICKET_SUCCESS,
-  CREATE_TICKET_FAIL
+  CREATE_TICKET_FAIL,
+  GET_CURRENT_TICKET_SUCCESS,
+  GET_CURRENT_TICKET_FAIL,
+  REMOVE_CURRENT_TICKET,
+  EDIT_TICKET_SUCCESS,
+  EDIT_TICKET_FAIL,
+  DELETE_TICKET_SUCCESS,
+  DELETE_TICKET_FAIL
 } from '../actions/types'
 
 const initialState = {
@@ -31,9 +38,30 @@ const ticketReducer = (state = initialState, action) => {
         ...state,
         tickets: []
       }
+    case GET_CURRENT_TICKET_SUCCESS:
+    case GET_CURRENT_TICKET_FAIL:
+    case EDIT_TICKET_SUCCESS:
+      return {
+        ...state,
+        currentTicket: action.payload
+      }
+    case REMOVE_CURRENT_TICKET:
+      return {
+        ...state,
+        currentTicket: ""
+      }
+    case DELETE_TICKET_SUCCESS:
+      return {
+        ...state,
+        currentTicket: {
+          isDeleted: true
+        }
+      }
     case TICKETS_LOAD_FAIL:
     case CREATE_TICKET_SUCCESS:
     case CREATE_TICKET_FAIL:
+    case EDIT_TICKET_FAIL:
+    case DELETE_TICKET_FAIL:
     default:
       return state
   }

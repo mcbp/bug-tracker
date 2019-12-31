@@ -5,7 +5,14 @@ import {
   TICKETS_LOAD_FAIL,
   CLEAR_TICKETS,
   CREATE_TICKET_SUCCESS,
-  CREATE_TICKET_FAIL
+  CREATE_TICKET_FAIL,
+  GET_CURRENT_TICKET_SUCCESS,
+  GET_CURRENT_TICKET_FAIL,
+  REMOVE_CURRENT_TICKET,
+  EDIT_TICKET_SUCCESS,
+  EDIT_TICKET_FAIL,
+  DELETE_TICKET_SUCCESS,
+  DELETE_TICKET_FAIL
 } from '../actions/types'
 import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
@@ -53,6 +60,61 @@ export const createTicket = (title, description, submitter, project,
       dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_TICKET_FAIL'))
       dispatch({
         type: CREATE_TICKET_FAIL
+      })
+    })
+}
+
+export const getCurrentTicket = currentProject => (dispatch) => {
+  axios.get(`/api/tickets?id=${currentProject}`)
+    .then(res => dispatch({
+      type: GET_CURRENT_TICKET_SUCCESS,
+      payload: res.data
+    }))
+    .catch(err => {
+      dispatch({
+        type: GET_CURRENT_TICKET_FAIL,
+        payload: err.response.data
+      })
+    })
+}
+
+export const removeCurrentTicket = () => {
+  return {
+    type: REMOVE_CURRENT_TICKET
+  }
+}
+
+export const editTicket = (_id, title, description, project, ticketType, priority, status) => (dispatch, getState) => {
+
+  const body = JSON.stringify({_id, title, description, project, ticketType, priority, status})
+
+  axios.post(`/api/tickets/edit`, body, tokenConfig(getState))
+    .then(res => dispatch({
+      type: EDIT_TICKET_SUCCESS,
+      payload: res.data
+    }))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'EDIT_TICKET_FAIL'))
+      dispatch({
+        type: EDIT_TICKET_FAIL
+      })
+    })
+}
+
+export const deleteTicket = (_id, title) => (dispatch, getState) => {
+
+  const body = JSON.stringify({_id, title})
+
+  axios.post(`/api/tickets/delete`, body, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: DELETE_TICKET_SUCCESS
+      })
+    })
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_TICKET_FAIL'))
+      dispatch({
+        type: DELETE_TICKET_FAIL
       })
     })
 }

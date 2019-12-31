@@ -14,6 +14,7 @@ const FooterContainer = styled.footer`
   justify-content: center;
   align-items: center;
   border-top: 0.8px solid rgba(0,0,0,0.14);
+  z-index: 10;
 `
 const FooterLink = styled.a`
   display: flex;

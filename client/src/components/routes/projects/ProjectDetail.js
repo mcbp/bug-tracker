@@ -81,7 +81,7 @@ const ProjectDetail = props => {
         <div>Created: <Moment date={currentProject.creation_date} format="DD MMM YYYY HH:mm"/></div>
       </Description>
 
-      <PageContainer title={"Tickets for this project"} small={true}>
+      <PageContainer title={"Tickets for this project"} small>
         <AllTickets
           projectFilter={currentProject._id}
           showSearch

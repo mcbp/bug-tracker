@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import uuid from 'react-uuid'
+import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -51,6 +52,11 @@ const Table = props => {
                     <Link to={`${slugPrefix}${row.slug}`}>
                       View <i style={{verticalAlign: "middle"}} className="material-icons">keyboard_arrow_right</i>
                     </Link>
+                  </Td>)
+                }
+                else if (col ==="last_updated") {
+                  return (<Td key={uuid()}>
+                    <Moment date={row[col]} format="DD/MM/YY HH:mm"/>
                   </Td>)
                 }
                 else {

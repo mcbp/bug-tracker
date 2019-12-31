@@ -4,11 +4,11 @@ import PageContainer from '../../layout/PageContainer'
 import ExpandingModule from '../../bits/ExpandingModule'
 import Table from '../../bits/Table'
 import { connect } from 'react-redux'
-import { loadProjects, createProject } from '../../../actions/projectActions'
+import { loadProjects } from '../../../actions/projectActions'
 
 const AllProjects = props => {
 
-  const { loadProjects, createProject, projects } = props
+  const { loadProjects, projects } = props
 
   useEffect(() => {
     loadProjects()

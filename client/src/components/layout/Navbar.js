@@ -29,7 +29,7 @@ const Navbar = props => {
 
         { user &&
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li>Welcome, <Name><Link to="/profile">{ user.name }</Link></Name></li>
+          <li>Welcome, <Name><Link to="/profile">{ user }</Link></Name></li>
         </ul>}
 
       </div>
@@ -39,7 +39,7 @@ const Navbar = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user.name
   }
 }
 

@@ -74,23 +74,13 @@ nav .brand-logo {
   width: 100%;
 }
 
-.btn {
-  background-color: #67d8cd;
-}
-.btn.reddish {background-color: #d66853;}
-.btn.reddish:hover {background-color: #c6482f;}
-.btn.reddish:focus {background-color: #a9422d;}
-.btn.purp {background-color: #b886f4;}
-.btn.purp:hover {background-color: #a160f0;}
-.btn.purp:focus {background-color: #9349ee;}
-
 .module {
   position: relative;
   padding: 20px;
   margin-bottom: 30px;
   background-color: #fff;
   max-width: 600px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: rgba(0,0,0,0.12) 0px 1px 3px, rgba(0,0,0,0.24) 0px 1px 2px;
   border-radius: 2px;
 }
 
@@ -126,6 +116,18 @@ nav .brand-logo {
   right: 15px;
   top: 10px;
 }
+
+
+.btn {
+  background-color: #67d8cd;
+}
+.btn.purp {background-color: #b886f4;}
+.btn.purp:hover {background-color: #a160f0;}
+.btn.purp:focus {background-color: #9349ee;}
+.btn.reddish {background-color: #d66853 !important;}
+.btn.reddish:hover {background-color: #c6482f !important;}
+.btn.reddish:focus {background-color: #a9422d !important;}
+
 
 @keyframes fadeIn {
   0% {

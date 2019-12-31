@@ -34,6 +34,7 @@ const projectReducer = (state = initialState, action) => {
       }
     case GET_CURRENT_PROJECT_SUCCESS:
     case GET_CURRENT_PROJECT_FAIL:
+    case EDIT_PROJECT_SUCCESS:
       return {
         ...state,
         currentProject: action.payload
@@ -49,11 +50,6 @@ const projectReducer = (state = initialState, action) => {
         currentProject: {
           isDeleted: true
         }
-      }
-    case EDIT_PROJECT_SUCCESS:
-      return {
-        ...state,
-        currentProject: action.payload
       }
     case PROJECTS_LOAD_FAIL:
     case CREATE_PROJECT_SUCCESS:
