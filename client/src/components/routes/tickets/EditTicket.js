@@ -56,7 +56,7 @@ const EditTicket = props => {
   }, [clearErrors])
 
   const instructions = [
-    'Edit the current ticket. Leaving fields blank keep the current value the same.'
+    'Edit the current ticket. Leaving fields blank will keep the current value the same.'
   ]
 
   return (

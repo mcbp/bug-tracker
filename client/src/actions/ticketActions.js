@@ -45,7 +45,7 @@ export const clearTickets = () => (dispatch) => {
 }
 
 export const createTicket = (title, description, submitter, project,
-  ticketType, priority) => (dispatch, getState) => {
+  ticketType, priority, reloadThisProject) => (dispatch, getState) => {
 
   const body = JSON.stringify({title, description, submitter, project, ticketType, priority})
 
@@ -55,7 +55,7 @@ export const createTicket = (title, description, submitter, project,
         payload: res.data
       })
     )
-    .then(() => dispatch(loadTickets()))
+    .then(() => dispatch(loadTickets(reloadThisProject)))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_TICKET_FAIL'))
       dispatch({

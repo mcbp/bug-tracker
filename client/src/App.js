@@ -27,7 +27,7 @@ const Main = styled.main`
   @media (max-width: 992px) {
     padding-left: 0;
   }
-  margin-bottom: 70px;
+  margin-bottom: 200px;
 `
 
 const App = props => {

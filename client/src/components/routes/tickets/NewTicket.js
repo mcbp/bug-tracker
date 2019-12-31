@@ -7,8 +7,8 @@ import { clearErrors } from '../../../actions/errorActions'
 
 const NewTicket = props => {
 
-  const { tickets, projects, submitter, error,
-    clearErrors, createTicket } = props
+  const { tickets, projects, currentProject, submitter, error,
+    clearErrors, createTicket, lockProject } = props
 
   const [title, setTitle] = useState("")
   const [project, setProject] = useState("")
@@ -44,6 +44,10 @@ const NewTicket = props => {
   }, [])
 
   useEffect(() => {
+    if (lockProject) setProject(lockProject._id)
+  }, [lockProject])
+
+  useEffect(() => {
     return () => clearErrors()
   }, [clearErrors])
 
@@ -62,9 +66,18 @@ const NewTicket = props => {
             <label htmlFor="t-name">Ticket title</label>
           </div>
           <div className="input-field col s6">
-            <select ref={projectSelect} onChange={e => setProject(e.target.value)}>
-              <option value="" disabled selected>Choose a project</option>
-              {projects.map(({_id, name}) => <option key={_id} value={_id}>{name}</option>)}
+            <select
+              ref={projectSelect}
+              onChange={e => setProject(e.target.value)}
+              disabled={!lockProject ? false : true}
+            >
+              {!lockProject ?
+              <Fragment>
+                <option value="" disabled selected>Choose a project</option>
+                {projects.map(({_id, name}) => <option key={_id} value={_id}>{name}</option>)}
+              </Fragment>
+              :
+              <option value={lockProject._id} selected>{lockProject.name}</option>}
             </select>
             <label>Project</label>
           </div>
@@ -101,7 +114,11 @@ const NewTicket = props => {
       <button className="btn purp"
         onClick={() =>  {
           clearErrors()
-          createTicket(title, description, submitter, project, ticketType, priority)
+          if (lockProject) {
+            createTicket(title, description, submitter, project, ticketType, priority, lockProject._id)
+          } else {
+            createTicket(title, description, submitter, project, ticketType, priority)
+          }
         }}
       >Create ticket</button>
 
@@ -115,6 +132,7 @@ const mapStateToProps = state => {
     isLoading: state.ticket.isLoading,
     tickets: state.ticket.tickets,
     projects: state.project.projects,
+    currentProject: state.project.currentProject,
     error: state.error
   }
 }

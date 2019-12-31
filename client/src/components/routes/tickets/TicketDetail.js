@@ -59,10 +59,11 @@ const TicketDetail = props => {
   `
 
   const TicketAttribute = styled.div`
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 15px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 3px !important;
+    padding-bottom: 9px !important;
     margin-bottom: 5px;
-    & > span {
+    & > div {
       margin-left: 10px;
     }
   `
@@ -74,7 +75,7 @@ const TicketDetail = props => {
       <Return>
         <Link to={`/projects/${currentTicket.project.slug}`}>
             <BackIcon className="material-icons">arrow_back</BackIcon>
-        <span>Project tickets</span></Link>
+        <span>View project</span></Link>
         <Link to="/tickets">
             <BackIcon className="material-icons">arrow_back</BackIcon>
         <span>All tickets</span></Link>
@@ -84,35 +85,35 @@ const TicketDetail = props => {
         <div className="col s12"><h2>{currentTicket.title}</h2></div>
         <TicketAttribute className="col s12 m6">
           <h6>Submitter</h6>
-          <span>{currentTicket.submitter ? currentTicket.submitter.name : '---'}</span>
+          <div>{currentTicket.submitter ? currentTicket.submitter.name : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Description</h6>
-          <span>{currentTicket.description ? currentTicket.description : '---'}</span>
+          <div>{currentTicket.description ? currentTicket.description : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Project</h6>
-          <span>{currentTicket.project ? currentTicket.project.name : '---'}</span>
+          <div>{currentTicket.project ? currentTicket.project.name : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Status</h6>
-          <span>{currentTicket.status ? currentTicket.status : '---'}</span>
+          <div>{currentTicket.status ? currentTicket.status : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Ticket type</h6>
-          <span>{currentTicket.ticketType ? currentTicket.ticketType : '---'}</span>
+          <div>{currentTicket.ticketType ? currentTicket.ticketType : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Priority</h6>
-          <span>{currentTicket.priority ? currentTicket.priority : '---'}</span>
+          <div>{currentTicket.priority ? currentTicket.priority : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Last updated</h6>
-          <span>{currentTicket.last_updated ? <Moment date={currentTicket.last_updated} format="DD MMM YYYY HH:mm"/> : '---'}</span>
+          <div>{currentTicket.last_updated ? <Moment date={currentTicket.last_updated} format="DD MMM YYYY HH:mm"/> : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Created</h6>
-          <span>{currentTicket.creation_date ? <Moment date={currentTicket.creation_date} format="DD MMM YYYY HH:mm"/> : '---'}</span>
+          <div>{currentTicket.creation_date ? <Moment date={currentTicket.creation_date} format="DD MMM YYYY HH:mm"/> : '---'}</div>
         </TicketAttribute>
       </div>
 
@@ -123,6 +124,10 @@ const TicketDetail = props => {
       <ExpandingModule title="Delete ticket" icon="delete_forever" color="#d66853">
           <DeleteTicket />
       </ExpandingModule>
+
+      <PageContainer title="Comments" small>
+        <p>to work on next</p>
+      </PageContainer>
 
     </PageContainer>
   )

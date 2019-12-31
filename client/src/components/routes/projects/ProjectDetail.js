@@ -6,6 +6,7 @@ import EditProject from './EditProject'
 import DeleteProject from './DeleteProject'
 import ExpandingModule from '../../bits/ExpandingModule'
 import AllTickets from '../tickets/AllTickets'
+import NewTicket from '../tickets/NewTicket'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getCurrentProject, removeCurrentProject } from '../../../actions/projectActions'
@@ -22,8 +23,11 @@ const ProjectDetail = props => {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 20px;
-    padding: 10px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #ccc;
+    & > * {
+      padding: 5px 0;
+    }
   `
   const BackIcon = styled.div`
     line-height: 16px;
@@ -82,6 +86,9 @@ const ProjectDetail = props => {
       </Description>
 
       <PageContainer title={"Tickets for this project"} small>
+        <ExpandingModule title="Create a new ticket" icon="note_add" color="#67d8cd">
+          <NewTicket lockProject={currentProject}/>
+        </ExpandingModule>
         <AllTickets
           projectFilter={currentProject._id}
           showSearch
