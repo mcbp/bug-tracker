@@ -4,9 +4,21 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 const tokenAuth = require('../../middleware/tokenAuth')
+const isAdmin = require('../../middleware/isAdmin')
 
 // User database schema
 const User = require('../../models/User')
+
+// @route   GET api/users/
+// @desc    Get a lsit of all users
+// @access  Public
+router.get('/', (req, res) => {
+  User.find({})
+    .select('-password')
+    .then(users => {
+      res.json(users)
+    })
+})
 
 // Validation middleware
 const registerValidation = [
@@ -138,5 +150,33 @@ router.post('/password', tokenAuth, passwordValidation, (req, res) => {
 
 })
 
+// Validation middleware
+const roleValidation = [
+  check('_id')
+    .not().isEmpty().trim().escape().withMessage('A selected user is required'),
+  check('newRole')
+    .not().isEmpty().trim().escape().withMessage('A new role is required'),
+]
+
+// @route   POST api/users/role
+// @desc    Update role
+// @access  Private
+router.post('/role', tokenAuth, isAdmin, roleValidation, (req, res) => {
+
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({msg: errors.array().map(err => err['msg'])})
+  }
+
+  const { _id, newRole } = req.body
+  const isAdmin = newRole === 'Admin' ? true : false
+
+  User.findOneAndUpdate({_id}, {$set: {isAdmin, last_updated: Date.now()}})
+    .select('-password')
+    .then(user => {
+      res.json(user)
+    })
+
+})
 
 module.exports = router

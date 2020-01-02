@@ -70,6 +70,15 @@ const TicketDetail = props => {
     }
   `
 
+  const priorityToString = number => {
+    switch(number) {
+      case 1: return 'High'
+      case 2: return 'Medium'
+      case 3: return 'Low'
+      default: return number
+    }
+  }
+
   return (
     <PageContainer>
 
@@ -107,7 +116,7 @@ const TicketDetail = props => {
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Priority</h6>
-          <div>{currentTicket.priority ? currentTicket.priority : '---'}</div>
+          <div>{currentTicket.priority ? priorityToString(currentTicket.priority) : '---'}</div>
         </TicketAttribute>
         <TicketAttribute className="col s12 m6">
           <h6>Last updated</h6>

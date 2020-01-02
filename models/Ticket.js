@@ -32,7 +32,7 @@ const TicketSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['Open', 'In Progress', 'Closed']
+    enum: ['Open', 'In Progress', 'Closed', 'More information required']
     //required: true
   },
   assigned: {

@@ -116,9 +116,31 @@ nav .brand-logo {
   border-bottom: 1px solid #b886f4;
   box-shadow: 0 1px 0 0 #b886f4;
 }
-.dropdown-content li > a, .dropdown-content li > span {
+.purple-form .dropdown-content li > a, .purple-form .dropdown-content li > span {
   color: #b886f4;
 }
+
+.green-form input,
+.green-form textarea {
+  font-size: 15px !important;
+}
+.select-wrapper input[type=text].select-dropdown:focus + label,
+.input-field input[type=text]#search:focus + label,
+.green-form .input-field input[type=text]:focus + label,
+.green-form .input-field textarea:focus + label {
+  color: #67c688;
+}
+.input-field input[type=text].select-dropdown:focus,
+.input-field input[type=text]#search:focus,
+.green-form .input-field input[type=text]:focus,
+.green-form .input-field textarea:focus {
+  border-bottom: 1px solid #67c688;
+  box-shadow: 0 1px 0 0 #67c688;
+}
+.green-form .dropdown-content li > a, .purple-green .dropdown-content li > span {
+  color: #67c688;
+}
+
 .icon-suffix {
   position: absolute;
   right: 15px;
@@ -132,6 +154,9 @@ nav .brand-logo {
 .btn.purp {background-color: #b886f4;}
 .btn.purp:hover {background-color: #a160f0;}
 .btn.purp:focus {background-color: #9349ee;}
+.btn.greenish {background-color: #67c688 !important;}
+.btn.greenish:hover {background-color: #4EAD6F !important;}
+.btn.greenish:focus {background-color: #349355 !important;}
 .btn.reddish {background-color: #d66853 !important;}
 .btn.reddish:hover {background-color: #c6482f !important;}
 .btn.reddish:focus {background-color: #a9422d !important;}

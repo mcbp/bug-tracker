@@ -7,10 +7,6 @@ const tokenAuth = require('../../middleware/tokenAuth')
 // User database schema
 const User = require('../../models/User')
 
-router.get('/', (req, res) => {
-  res.json({test: "value"})
-})
-
 // @route   POST api/auth
 // @desc    Authenticate a user
 // @access  Public

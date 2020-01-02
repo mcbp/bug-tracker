@@ -14,6 +14,7 @@ import Register from './components/routes/Register'
 import Profile from './components/routes/profile/Profile'
 import Project from './components/routes/projects/Project'
 import Ticket from './components/routes/tickets/Ticket'
+import Roles from './components/routes/roles/Roles'
 import Footer from './components/layout/Footer'
 
 const Header = styled.header`
@@ -55,6 +56,7 @@ const App = props => {
             <PrivateRoute path="/profile" component={Profile}/>
             <Route path="/projects" component={Project}/>
             <Route path="/tickets" component={Ticket}/>
+            <Route path="/roles" component={Roles}/>
           </Switch>
         </div>
       </Main>

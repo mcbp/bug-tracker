@@ -3,6 +3,7 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const convertToSlug = require('../../helpers')
 const tokenAuth = require('../../middleware/tokenAuth')
+const isAdmin = require('../../middleware/isAdmin')
 
 const Project = require('../../models/Project')
 
@@ -34,7 +35,7 @@ const projectValidation = [
 // @route   POST api/projects
 // @desc    Create a new project
 // @access  Private
-router.post('/', tokenAuth, projectValidation, (req, res) => {
+router.post('/', tokenAuth, isAdmin, projectValidation, (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})
@@ -68,7 +69,7 @@ router.post('/', tokenAuth, projectValidation, (req, res) => {
 // @route   POST api/projects/edit
 // @desc    Edit a project
 // @access  Private
-router.post('/edit', tokenAuth, projectValidation, (req, res) => {
+router.post('/edit', tokenAuth, isAdmin, projectValidation, (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})
@@ -92,7 +93,7 @@ router.post('/edit', tokenAuth, projectValidation, (req, res) => {
 // @route   POST api/projects/delete
 // @desc    Delete a project
 // @access  Private
-router.post('/delete', tokenAuth, projectValidation, (req, res) => {
+router.post('/delete', tokenAuth, isAdmin, projectValidation, (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})
