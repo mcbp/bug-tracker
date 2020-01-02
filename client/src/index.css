@@ -66,6 +66,11 @@ nav .brand-logo {
   border-bottom: 1px solid #fff;
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .switch-wrapper {
   position: relative;
   width: 100%;
@@ -84,7 +89,6 @@ nav .brand-logo {
   box-shadow: rgba(0,0,0,0.12) 0px 1px 3px, rgba(0,0,0,0.24) 0px 1px 2px;
   border-radius: 2px;
 }
-
 .module.full-width {
   max-width: 100%;
 }

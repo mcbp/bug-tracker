@@ -13,6 +13,7 @@ app.use('/api/users', require('./routes/api/users'))
 app.use('/api/projects', require('./routes/api/projects'))
 app.use('/api/tickets', require('./routes/api/tickets'))
 app.use('/api/comments', require('./routes/api/comments'))
+app.use('/api/charts', require('./routes/api/charts'))
 
 const port = process.env.PORT || 5000
 

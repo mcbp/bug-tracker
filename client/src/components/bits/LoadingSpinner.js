@@ -6,7 +6,8 @@ const LoadingSpinner = () => {
   const Container = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 35px;
+    align-items: center;
+    height: 100%;
   `
 
   return (
