@@ -10,7 +10,8 @@ body, html {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -77,7 +78,7 @@ nav .brand-logo {
 .module {
   position: relative;
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 1rem;
   background-color: #fff;
   max-width: 600px;
   box-shadow: rgba(0,0,0,0.12) 0px 1px 3px, rgba(0,0,0,0.24) 0px 1px 2px;
@@ -94,17 +95,20 @@ nav .brand-logo {
 
 .select-wrapper *,
 #search,
-.purple-form input {
+.purple-form input,
+.purple-form textarea {
   font-size: 15px !important;
 }
 .select-wrapper input[type=text].select-dropdown:focus + label,
 .input-field input[type=text]#search:focus + label,
-.purple-form .input-field input[type=text]:focus + label {
+.purple-form .input-field input[type=text]:focus + label,
+.purple-form .input-field textarea:focus + label {
   color: #b886f4;
 }
 .input-field input[type=text].select-dropdown:focus,
 .input-field input[type=text]#search:focus,
-.purple-form .input-field input[type=text]:focus {
+.purple-form .input-field input[type=text]:focus,
+.purple-form .input-field textarea:focus {
   border-bottom: 1px solid #b886f4;
   box-shadow: 0 1px 0 0 #b886f4;
 }

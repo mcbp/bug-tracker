@@ -7,7 +7,7 @@ import { loadProjects } from '../../../actions/projectActions'
 
 const AllTickets = props => {
 
-    const { loadTickets, clearTickets, tickets,
+    const { loadTickets, clearTickets, tickets, isLoading,
       loadProjects, projects,
       projectFilter, showFilter, showSearch, headerColor } = props
 
@@ -16,11 +16,8 @@ const AllTickets = props => {
 
     useEffect(() => {
       loadTickets(currentProjectFilter, searchQuery)
-    }, [loadTickets, currentProjectFilter, searchQuery])
-
-    useEffect(() => {
       return () => clearTickets()
-    }, [clearTickets])
+    }, [loadTickets, currentProjectFilter, searchQuery, clearTickets])
 
     useEffect(() => {
       loadProjects()
@@ -56,6 +53,7 @@ const AllTickets = props => {
         {showFilter && filterComponent}
         {showSearch && searchComponent}
         <Table
+          isLoading={isLoading}
           headings={['Ticket', 'Project', 'Status', 'Last updated', '']}
           data={tickets.map(
             ({title, project: {name}, status, last_updated, _id}) =>

@@ -72,8 +72,7 @@ export const getCurrentTicket = currentProject => (dispatch) => {
     }))
     .catch(err => {
       dispatch({
-        type: GET_CURRENT_TICKET_FAIL,
-        payload: err.response.data
+        type: GET_CURRENT_TICKET_FAIL
       })
     })
 }

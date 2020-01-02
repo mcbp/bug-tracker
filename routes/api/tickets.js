@@ -99,7 +99,6 @@ router.post('/edit', tokenAuth, editTicketValidation, (req, res) => {
   Object.keys(req.body).map(property => req.body[property] = entities.decode(req.body[property]))
 
   const { _id, title, description, project, ticketType, priority, status } = req.body
-  console.log(req.body)
 
   const errors = validationResult(req)
   if (!errors.isEmpty()) {

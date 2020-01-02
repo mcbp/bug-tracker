@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import PageContainer from '../../layout/PageContainer'
 import EditTicket from './EditTicket'
 import DeleteTicket from './DeleteTicket'
+import AllComments from '../comments/AllComments'
+import NewComment from '../comments/NewComment'
 import ExpandingModule from '../../bits/ExpandingModule'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -126,7 +128,10 @@ const TicketDetail = props => {
       </ExpandingModule>
 
       <PageContainer title="Comments" small>
-        <p>to work on next</p>
+        <ExpandingModule title="Post a new comment" icon="comment" color="#67d8cd">
+          <NewComment />
+        </ExpandingModule>
+        <AllComments />
       </PageContainer>
 
     </PageContainer>

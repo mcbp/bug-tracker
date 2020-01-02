@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import uuid from 'react-uuid'
 import Moment from 'react-moment'
@@ -7,7 +7,15 @@ import styled from 'styled-components'
 
 const Table = props => {
 
-  const { headings, data, slugPrefix, headerColor } = props
+  const { isLoading, headings, data, slugPrefix, headerColor } = props
+
+  const [showLoading, setShowLoading] = useState(true)
+
+  useEffect(() => {
+    setShowLoading(true)
+    let timer = setTimeout(() => setShowLoading(false), 750)
+    return () => clearTimeout(timer)
+  }, [isLoading, data])
 
   const TableContainer = styled.table`
     background-color: #fff;
@@ -43,7 +51,7 @@ const Table = props => {
       </Thead>
 
       <tbody>
-        { data.length > 0 ?
+        { data.length ?
           data.map(row =>
             <tr>
               {Object.keys(row).map(col => {
@@ -65,9 +73,9 @@ const Table = props => {
               })}
             </tr>
           )
-        : <tr><Empty colSpan={"100%"}>No results found</Empty></tr>}
+        : <tr><Empty colSpan={"100%"}>{isLoading || showLoading ? 'loading...' : 'No results found'}</Empty></tr>}
       </tbody>
-
+      
     </TableContainer>
   )
 
