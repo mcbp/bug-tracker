@@ -114,7 +114,7 @@ router.post('/edit', tokenAuth, editTicketValidation, (req, res) => {
   req.body.last_updated = Date.now()
 
   // Find project and update
-  Ticket.findOneAndUpdate({_id}, {$set: req.body}, {new:true}).populate('project').populate('submitter')
+  Ticket.findOneAndUpdate({_id}, {$set: req.body, last_updated: Date.now()}, {new:true}).populate('project').populate('submitter')
     .then(ticket => {
       res.json(ticket)
     })

@@ -56,7 +56,7 @@ const App = props => {
             <PrivateRoute path="/profile" component={Profile}/>
             <Route path="/projects" component={Project}/>
             <Route path="/tickets" component={Ticket}/>
-            <Route path="/roles" component={Roles}/>
+            <PrivateRoute path="/roles" component={Roles}/>
           </Switch>
         </div>
       </Main>

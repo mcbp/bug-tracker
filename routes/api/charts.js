@@ -48,4 +48,17 @@ router.get('/tickets-by-status', (req, res) => {
     })
 })
 
+// @route   GET api/charts/tickets-by-latest-update
+// @desc    Get last five tickets by latest update
+// @access  Public
+router.get('/tickets-by-latest-update', (req, res) => {
+  Ticket.find({})
+    .sort({'last_updated': -1})
+    .limit(4)
+    .then(data => {
+      res.json(data)
+    })
+
+})
+
 module.exports = router
