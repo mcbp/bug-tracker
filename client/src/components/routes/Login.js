@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PageContainer from '../layout/PageContainer'
 import ErrorMessage from '../bits/ErrorMessage'
+import FormInstructions from '../bits/FormInstructions'
+import DemoLogin from './DemoLogin'
 import { connect } from 'react-redux'
 import { login } from '../../actions/authActions'
 import { clearErrors } from '../../actions/errorActions'
@@ -48,9 +50,15 @@ const Login = props => {
     setLoginState({...loginState, email: "", password: ""})
   }
 
+  const instructions = [
+    `If you do not want sign up you can press the demo login button to log in to a demo account.`
+  ]
+
   return (
     <PageContainer title="Login">
       <div className="module">
+
+        <FormInstructions instructions={instructions}/>
 
         { msg && <ErrorMessage msg={msg} />}
         <form className="col s12">
@@ -75,6 +83,8 @@ const Login = props => {
         <button className="btn"
           onClick={onSubmit}
         >Log In</button>
+
+        <DemoLogin />
 
       </div>
     </PageContainer>

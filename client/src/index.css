@@ -61,9 +61,10 @@ nav .brand-logo {
   color: #3590f3;
 }
 #sidebar .divider {
-  margin: 10px 0;
+  margin: 20px auto;
   height: 0;
   border-bottom: 1px solid #fff;
+  width: 80%;
 }
 
 .flex {

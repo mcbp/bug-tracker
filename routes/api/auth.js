@@ -11,7 +11,12 @@ const User = require('../../models/User')
 // @desc    Authenticate a user
 // @access  Public
 router.post('/', (req, res) => {
-  const { email, password } = req.body
+  var { email, password } = req.body
+
+  //Demo login
+  if (email === "demouser@example.com") {
+    password = "thedemopassword"
+  }
 
   // Simple validation - improve
   if (!email || !password) {

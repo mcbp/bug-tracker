@@ -11,11 +11,11 @@ import {
 import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 
-export const loadUsers = () => (dispatch) => {
+export const loadUsers = searchQuery => (dispatch) => {
 
   dispatch({ type: USERS_LOADING })
 
-  axios.get('/api/users')
+  axios.get(`/api/users?search=${searchQuery}`)
     .then(res => dispatch({
       type: USERS_LOADED,
       payload: res.data

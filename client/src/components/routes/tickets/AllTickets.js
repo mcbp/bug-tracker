@@ -12,7 +12,7 @@ const AllTickets = props => {
       projectFilter, showFilter, showSearch, headerColor } = props
 
     const [currentProjectFilter, setCurrentProjectFilter] = useState(projectFilter)
-    const [searchQuery, setSearchQuery] = useState()
+    const [searchQuery, setSearchQuery] = useState("")
 
     useEffect(() => {
       loadTickets(currentProjectFilter, searchQuery)

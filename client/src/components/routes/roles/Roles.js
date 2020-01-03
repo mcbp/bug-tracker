@@ -22,7 +22,7 @@ const Roles = props => {
 
   return (
     <PageContainer title="Role Management">
-      <div className="row">
+      <div className="row" style={{margin: "-0.75rem", marginTop: "30px"}}>
 
         <div className="col s12 m12 l12 xl4">
           <div className="module full-width">

@@ -10,10 +10,18 @@ const isAdmin = require('../../middleware/isAdmin')
 const User = require('../../models/User')
 
 // @route   GET api/users/
-// @desc    Get a lsit of all users
+// @desc    Get a list of all users
 // @access  Public
 router.get('/', (req, res) => {
-  User.find({})
+
+  const { search } = req.query
+
+  User.find({
+    $or: [
+      {name: {"$regex": search, "$options" : "i"}},
+      {email: {"$regex": search, "$options" : "i"}}
+    ]
+  })
     .select('-password')
     .then(users => {
       res.json(users)

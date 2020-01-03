@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -8,9 +8,11 @@ const UserList = props => {
 
   const { loadUsers, selectUser, users, selectedUser } = props
 
+  const [searchQuery, setSearchQuery] = useState("")
+
   useEffect(() => {
-    loadUsers()
-  }, [loadUsers])
+    loadUsers(searchQuery)
+  }, [loadUsers, searchQuery])
 
   const list = users.map(user => {
     return (
@@ -47,18 +49,25 @@ const UserList = props => {
   `
 
   return (
-    <Table className="striped">
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        {list}
-      </tbody>
-    </Table>
+    <Fragment>
+      <div className="input-field col s12 m12 l12 xl6">
+        <i className = "material-icons icon-suffix">search</i>
+        <input id="search" type="text" placeholder="" onChange={e => setSearchQuery(e.target.value)}/>
+        <label htmlFor="search">Search users</label>
+      </div>
+      <Table className="striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list}
+        </tbody>
+      </Table>
+    </Fragment>
   )
 }
 

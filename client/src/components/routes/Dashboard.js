@@ -19,7 +19,7 @@ const Dashboard = props => {
 
   return (
     <PageContainer title="Dashboard">
-      <div className="row flex">
+      <div className="row flex" style={{margin: "-0.75rem", marginTop: "30px"}}>
 
         <ChartContainer className="col s12 m12 l6">
           <div className="module full-width" style={{marginBottom: "1.5rem"}}>
@@ -44,7 +44,7 @@ const Dashboard = props => {
 
         <ChartContainer className="col s12 m12 l6">
           <div className="module full-width" style={{marginBottom: "1.5rem"}}>
-            
+
           </div>
         </ChartContainer>
 
