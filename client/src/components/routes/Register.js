@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PageContainer from '../layout/PageContainer'
+import FadeInTransition from '../bits/FadeInTransition'
 import FormInstructions from '../bits/FormInstructions'
 import ErrorMessage from '../bits/ErrorMessage'
 import { connect } from 'react-redux'
@@ -56,42 +57,44 @@ const Register = props => {
   ]
 
   return (
-    <PageContainer title="Registration">
-      <div className="module">
+    <FadeInTransition>
+      <PageContainer title="Registration">
+        <div className="module">
 
-        { !msg ? <FormInstructions instructions={instructions}/> : <ErrorMessage msg={msg} />}
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="name" type="text" className="validate"
-                value={name}
-                onChange={e => setRegisterState({...registerState, name: e.target.value})}
-              />
-              <label htmlFor="name">Name</label>
+          { !msg ? <FormInstructions instructions={instructions}/> : <ErrorMessage msg={msg} />}
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <input id="name" type="text" className="validate"
+                  value={name}
+                  onChange={e => setRegisterState({...registerState, name: e.target.value})}
+                />
+                <label htmlFor="name">Name</label>
+              </div>
+              <div className="input-field col s12">
+                <input id="email" type="email" className="validate"
+                  value={email}
+                  onChange={e => setRegisterState({...registerState, email: e.target.value})}
+                />
+                <label htmlFor="email">Email</label>
+              </div>
+              <div className="input-field col s12">
+                <input id="password" type="password" className="validate"
+                  value={password}
+                  onChange={e => setRegisterState({...registerState, password: e.target.value})}
+                />
+                <label htmlFor="password">Password</label>
+              </div>
             </div>
-            <div className="input-field col s12">
-              <input id="email" type="email" className="validate"
-                value={email}
-                onChange={e => setRegisterState({...registerState, email: e.target.value})}
-              />
-              <label htmlFor="email">Email</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="password" type="password" className="validate"
-                value={password}
-                onChange={e => setRegisterState({...registerState, password: e.target.value})}
-              />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-        </form>
+          </form>
 
-        <button className="btn"
-          onClick={onSubmit}
-        >Sign up</button>
+          <button className="btn"
+            onClick={onSubmit}
+          >Sign up</button>
 
-      </div>
-    </PageContainer>
+        </div>
+      </PageContainer>
+    </FadeInTransition>
   )
 }
 

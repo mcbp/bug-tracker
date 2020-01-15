@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import M from 'materialize-css'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { motion, AnimatePresence } from "framer-motion";
+import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import { loadUser } from './actions/authActions'
 
@@ -32,7 +33,11 @@ const Main = styled.main`
 `
 
 const App = props => {
+
   const { loadUser } = props
+
+  const location = useLocation()
+  //console.log(location)
 
   useEffect(() => {
     M.AutoInit()
@@ -40,7 +45,7 @@ const App = props => {
   }, [loadUser])
 
   return (
-    <Router>
+    <Fragment>
 
       <Header>
         <Navbar />
@@ -49,21 +54,23 @@ const App = props => {
 
       <Main>
         <div className="container">
-          <Switch>
-            <Route exact path="/" component={Dashboard}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <PrivateRoute path="/profile" component={Profile}/>
-            <Route path="/projects" component={Project}/>
-            <Route path="/tickets" component={Ticket}/>
-            <PrivateRoute path="/roles" component={Roles}/>
-          </Switch>
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.pathname}>
+              <Route exact path="/" component={Dashboard}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/register" component={Register}/>
+              <PrivateRoute path="/profile" component={Profile}/>
+              <Route path="/projects" component={Project}/>
+              <Route path="/tickets" component={Ticket}/>
+              <PrivateRoute path="/roles" component={Roles}/>
+            </Switch>
+          </AnimatePresence>
         </div>
       </Main>
 
       <Footer />
 
-    </Router>
+    </Fragment>
   )
 }
 

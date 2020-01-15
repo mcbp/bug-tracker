@@ -1,5 +1,6 @@
 import React from "react"
 import PageContainer from '../../layout/PageContainer'
+import FadeInTransition from '../../bits/FadeInTransition'
 import Rename from './Rename'
 import Repassword from './Repassword'
 import { connect } from 'react-redux'
@@ -10,12 +11,14 @@ const Profile = props => {
   const { name } = props
 
   return (
-    <PageContainer title={name + "'s profile"}>
+    <FadeInTransition>
+      <PageContainer title={name + "'s profile"}>
 
-      <Rename />
-      <Repassword />
+        <Rename />
+        <Repassword />
 
-    </PageContainer>
+      </PageContainer>
+    </FadeInTransition>
   )
 }
 

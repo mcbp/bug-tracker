@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PageContainer from '../layout/PageContainer'
+import FadeInTransition from '../bits/FadeInTransition'
 import ErrorMessage from '../bits/ErrorMessage'
 import FormInstructions from '../bits/FormInstructions'
 import DemoLogin from './DemoLogin'
@@ -55,6 +56,7 @@ const Login = props => {
   ]
 
   return (
+    <FadeInTransition>
     <PageContainer title="Login">
       <div className="module">
 
@@ -88,6 +90,7 @@ const Login = props => {
 
       </div>
     </PageContainer>
+    </FadeInTransition>
   )
 }
 

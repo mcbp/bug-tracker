@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import PageContainer from '../../layout/PageContainer'
+import FadeInTransition from '../../bits/FadeInTransition'
 import UserList from './UserList'
 import RoleForm from './RoleForm'
 import styled from 'styled-components'
@@ -21,23 +22,25 @@ const Roles = props => {
   `
 
   return (
-    <PageContainer title="Role Management">
-      <div className="row" style={{margin: "-0.75rem", marginTop: "30px"}}>
+    <FadeInTransition>
+      <PageContainer title="Role Management">
+        <div className="row" style={{margin: "-0.75rem", marginTop: "30px"}}>
 
-        <div className="col s12 m12 l12 xl4">
-          <div className="module full-width">
-            <RoleForm />
+          <div className="col s12 m12 l12 xl4">
+            <div className="module full-width">
+              <RoleForm />
+            </div>
           </div>
-        </div>
 
-        <div className="col s12 m12 l12 xl8">
-          <Overflow>
-            <UserList />
-          </Overflow>
-        </div>
+          <div className="col s12 m12 l12 xl8">
+            <Overflow>
+              <UserList />
+            </Overflow>
+          </div>
 
-      </div>
-    </PageContainer>
+        </div>
+      </PageContainer>
+    </FadeInTransition>
   )
 }
 
