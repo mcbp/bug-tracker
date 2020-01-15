@@ -23,7 +23,7 @@ const RoleForm = props => {
   }, [error])
 
   const instructions = [
-    `Select a user from the table and use this form to update their role.`
+    `Select a user from the adjacent user list and use this form to update their role.`
   ]
 
   const select = useRef(null)

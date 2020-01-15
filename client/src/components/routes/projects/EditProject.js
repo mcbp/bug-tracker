@@ -36,10 +36,10 @@ const EditProject = props => {
       <FormInstructions instructions={instructions}/>
       { msg && <ErrorMessage msg={msg} />}
 
-      <form className="col s12">
+      <form className="col s12 green-form">
 
         <div className="input-field col s12">
-          <input id="name" type="text" className="validate"
+          <input id="name" type="text"
             value={name}
             onChange={e => setName(e.target.value)}
           />
@@ -47,7 +47,7 @@ const EditProject = props => {
         </div>
 
         <div className="input-field col s12">
-          <input id="description" type="text" className="validate"
+          <input id="description" type="text"
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
@@ -56,7 +56,7 @@ const EditProject = props => {
 
       </form>
 
-      <button className="btn"
+      <button className="btn greenish"
         onClick={() => {
           clearErrors()
           editProject(currentProject._id, name, description)

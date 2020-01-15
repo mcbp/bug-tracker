@@ -36,7 +36,7 @@ const NewProject = props => {
       <FormInstructions instructions={instructions}/>
       { msg && <ErrorMessage msg={msg} />}
 
-      <form className="col s12">
+      <form className="col s12 green-from">
 
         <div className="input-field col s12">
           <input id="name" type="text"
@@ -56,7 +56,7 @@ const NewProject = props => {
 
       </form>
 
-      <button className="btn"
+      <button className="btn greenish"
         onClick={() =>  {
           clearErrors()
           createProject(name, description)

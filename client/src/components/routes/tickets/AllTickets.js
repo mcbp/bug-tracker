@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import M from 'materialize-css'
+import styled from 'styled-components'
 import Table from '../../bits/Table'
 import { connect } from 'react-redux'
 import { loadTickets, clearTickets } from '../../../actions/ticketActions'
@@ -29,6 +30,12 @@ const AllTickets = props => {
       M.FormSelect.init(elem)
     }, [tickets, projects])
 
+    const Container = styled.div`
+      overflow-x: auto;
+      margin: -5px;
+      padding: 5px;
+    `
+
     const filterComponent = (
       <div className = "input-field col s12 m6" >
         <select ref={select} onChange={e => setCurrentProjectFilter(e.target.value)}>
@@ -49,19 +56,19 @@ const AllTickets = props => {
     )
 
     return (
-      <div className="row">
+      <Container className="row">
         {showFilter && filterComponent}
         {showSearch && searchComponent}
         <Table
           isLoading={isLoading}
-          headings={['Ticket', 'Project', 'Status', 'Last updated', '']}
+          headings={['Ticket', 'Project', 'Type', 'Status', 'Last updated', '']}
           data={tickets.map(
-            ({title, project: {name}, status, last_updated, _id}) =>
-            ({title, name, status, last_updated, slug: _id}))}
+            ({title, project: {name}, ticketType, status, last_updated, _id}) =>
+            ({title, name, ticketType, status, last_updated, slug: _id}))}
           slugPrefix={"/tickets/"}
           headerColor={headerColor}
         />
-      </div>
+      </Container>
     )
   }
 
