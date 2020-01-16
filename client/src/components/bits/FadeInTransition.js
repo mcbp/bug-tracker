@@ -8,7 +8,7 @@ const FadeInTransition = props => {
   const pageVariants = {
     initial: {
       opacity: 0,
-      x: -25
+      x: -15
     },
     in: {
       opacity: 1,
@@ -16,14 +16,14 @@ const FadeInTransition = props => {
     },
     out: {
       opacity: 0,
-      x: 25
+      x: 15
     }
   }
 
   const pageTransition = {
     type: "tween",
     ease: "anticipate",
-    duration: 0.5
+    duration: 0.4
   }
 
   return (

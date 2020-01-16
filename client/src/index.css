@@ -162,6 +162,11 @@ nav .brand-logo {
 .btn.reddish:hover {background-color: #c6482f !important;}
 .btn.reddish:focus {background-color: #a9422d !important;}
 
+@media (min-width: 993px) {
+  .notification-container {
+    left: 300px !important;
+  }
+}
 
 @keyframes fadeIn {
   0% {

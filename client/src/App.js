@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import { loadUser } from './actions/authActions'
+import { createNotification } from './actions/errorActions'
 
 import Navbar from './components/layout/Navbar'
 import Sidebar from './components/layout/Sidebar'
@@ -17,6 +18,7 @@ import Project from './components/routes/projects/Project'
 import Ticket from './components/routes/tickets/Ticket'
 import Roles from './components/routes/roles/Roles'
 import Footer from './components/layout/Footer'
+import GlobalNotification from './components/bits/GlobalNotification'
 
 const Header = styled.header`
   padding-left: 300px;
@@ -34,7 +36,7 @@ const Main = styled.main`
 
 const App = props => {
 
-  const { loadUser } = props
+  const { loadUser, createNotification } = props
 
   const location = useLocation()
   //console.log(location)
@@ -52,6 +54,13 @@ const App = props => {
         <Sidebar />
       </Header>
 
+      {/*<button className="btn" onClick={() => createNotification("testing")}>
+        test notification
+      </button>
+      <button className="btn" onClick={() => createNotification("otherwise")}>
+        test notification
+      </button>*/}
+
       <Main>
         <div className="container">
           <AnimatePresence exitBeforeEnter>
@@ -68,10 +77,12 @@ const App = props => {
         </div>
       </Main>
 
+      <GlobalNotification />
+
       <Footer />
 
     </Fragment>
   )
 }
 
-export default connect(null, { loadUser })(App)
+export default connect(null, { loadUser, createNotification })(App)

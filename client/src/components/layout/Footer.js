@@ -22,10 +22,10 @@ const FooterLink = styled.a`
   align-items: center;
   padding: 0 15px;
   color: #000;
-  font-size: 14px;
+  font-size: 13px;
 `
 const FooterIcon = styled.i`
-  font-size: 16px;
+  font-size: 15px;
   padding-right: 4px;
 `
 

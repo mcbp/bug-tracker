@@ -24,11 +24,11 @@ const Sidebar = props => {
 
       <li><Link to="/roles"><i className="material-icons">group_add</i>Role Management</Link></li>
 
-      <li><Link to="/profile"><i className="material-icons">person</i>Profile</Link></li>
-
       <li><Link to="/projects"><i className="material-icons">view_list</i>Projects</Link></li>
 
       <li><Link to="/tickets"><i className="material-icons">description</i>Tickets</Link></li>
+
+      <li><Link to="/profile"><i className="material-icons">person</i>My Profile</Link></li>
 
       { props.isAuthenticated &&
       <li><div className="divider"></div></li>}
