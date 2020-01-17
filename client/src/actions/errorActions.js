@@ -18,10 +18,12 @@ export const clearErrors = () => {
   }
 }
 
-export const createNotification = notification => (dispatch) => {
+let id = 0
+export const createNotification = (notification, theme = "info") => (dispatch) => {
+  id++
   dispatch({
     type: CREATE_NOTIFICATION,
-    payload: notification
+    payload: {notification, id, theme}
   })
   setTimeout(() => {
     dispatch({

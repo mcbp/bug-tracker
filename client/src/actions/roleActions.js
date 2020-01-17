@@ -8,7 +8,7 @@ import {
   UPDATE_ROLE_SUCCESS,
   UPDATE_ROLE_FAIL
 } from '../actions/types'
-import { returnErrors } from './errorActions'
+import { returnErrors, createNotification } from './errorActions'
 import { tokenConfig } from './authActions'
 
 export const loadUsers = searchQuery => (dispatch) => {
@@ -46,10 +46,13 @@ export const updateRole = (_id, newRole) => (dispatch, getState) => {
   const body = JSON.stringify({_id, newRole})
 
   axios.post('/api/users/role', body, tokenConfig(getState))
-    .then(res => dispatch({
-      type: UPDATE_ROLE_SUCCESS
-    }))
-    .then(() => dispatch(loadUsers()))
+    .then(res => {
+      dispatch({
+        type: UPDATE_ROLE_SUCCESS
+      })
+      dispatch(createNotification("User role updated", "success"))
+    })
+    .then(() => dispatch(loadUsers("")))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'UPDATE_ROLE_FAIL'))
       dispatch({

@@ -14,7 +14,7 @@ import {
   DELETE_TICKET_SUCCESS,
   DELETE_TICKET_FAIL
 } from '../actions/types'
-import { returnErrors } from './errorActions'
+import { returnErrors, createNotification } from './errorActions'
 import { tokenConfig } from './authActions'
 
 export const loadTickets = (project, search) => (dispatch) => {
@@ -50,11 +50,13 @@ export const createTicket = (title, description, submitter, project,
   const body = JSON.stringify({title, description, submitter, project, ticketType, priority})
 
   axios.post('/api/tickets', body, tokenConfig(getState))
-    .then(res => dispatch({
+    .then(res => {
+      dispatch({
         type: CREATE_TICKET_SUCCESS,
         payload: res.data
       })
-    )
+      dispatch(createNotification("Ticket created", "success"))
+    })
     .then(() => dispatch(loadTickets(reloadThisProject)))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_TICKET_FAIL'))
@@ -88,10 +90,13 @@ export const editTicket = (_id, title, description, project, ticketType, priorit
   const body = JSON.stringify({_id, title, description, project, ticketType, priority, status})
 
   axios.post(`/api/tickets/edit`, body, tokenConfig(getState))
-    .then(res => dispatch({
-      type: EDIT_TICKET_SUCCESS,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: EDIT_TICKET_SUCCESS,
+        payload: res.data
+      })
+      dispatch(createNotification("Ticket updated", "success"))
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'EDIT_TICKET_FAIL'))
       dispatch({
@@ -109,6 +114,7 @@ export const deleteTicket = (_id, title) => (dispatch, getState) => {
       dispatch({
         type: DELETE_TICKET_SUCCESS
       })
+      dispatch(createNotification("Ticket deleted", "success"))
     })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_TICKET_FAIL'))

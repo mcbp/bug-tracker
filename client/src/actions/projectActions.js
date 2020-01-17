@@ -13,7 +13,7 @@ import {
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_FAIL
 } from '../actions/types'
-import { returnErrors } from './errorActions'
+import { returnErrors, createNotification } from './errorActions'
 import { tokenConfig } from './authActions'
 
 export const loadProjects = () => (dispatch) => {
@@ -21,10 +21,12 @@ export const loadProjects = () => (dispatch) => {
   dispatch({ type: PROJECTS_LOADING })
 
   axios.get('/api/projects')
-    .then(res => dispatch({
-      type: PROJECTS_LOADED,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: PROJECTS_LOADED,
+        payload: res.data
+      })
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status))
       dispatch({
@@ -38,11 +40,13 @@ export const createProject = (name, description) => (dispatch, getState) => {
   const body = JSON.stringify({name, description})
 
   axios.post('/api/projects', body, tokenConfig(getState))
-    .then(res => dispatch({
+    .then(res => {
+      dispatch({
         type: CREATE_PROJECT_SUCCESS,
         payload: res.data
       })
-    )
+      dispatch(createNotification("Project created", "success"))
+    })
     .then(() => dispatch(loadProjects()))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_PROJECT_FAIL'))
@@ -78,10 +82,13 @@ export const editProject = (_id, name, description) => (dispatch, getState) => {
   const body = JSON.stringify({_id, name, description})
 
   axios.post(`/api/projects/edit`, body, tokenConfig(getState))
-    .then(res => dispatch({
-      type: EDIT_PROJECT_SUCCESS,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: EDIT_PROJECT_SUCCESS,
+        payload: res.data
+      })
+      dispatch(createNotification("Project updated", "success"))
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'EDIT_PROJECT_FAIL'))
       dispatch({
@@ -96,10 +103,10 @@ export const deleteProject = (_id, name) => (dispatch, getState) => {
 
   axios.post(`/api/projects/delete`, body, tokenConfig(getState))
     .then(res => {
-      console.log(res)
       dispatch({
         type: DELETE_PROJECT_SUCCESS
       })
+      dispatch(createNotification("Project deleted", "success"))
     })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_PROJECT_FAIL'))

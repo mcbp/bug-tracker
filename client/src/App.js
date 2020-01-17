@@ -39,7 +39,6 @@ const App = props => {
   const { loadUser, createNotification } = props
 
   const location = useLocation()
-  //console.log(location)
 
   useEffect(() => {
     M.AutoInit()
@@ -53,13 +52,6 @@ const App = props => {
         <Navbar />
         <Sidebar />
       </Header>
-
-      {/*<button className="btn" onClick={() => createNotification("testing")}>
-        test notification
-      </button>
-      <button className="btn" onClick={() => createNotification("otherwise")}>
-        test notification
-      </button>*/}
 
       <Main>
         <div className="container">
