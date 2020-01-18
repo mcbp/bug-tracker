@@ -3,6 +3,7 @@ const router = express.Router()
 const { check, oneOf, validationResult } = require('express-validator')
 const tokenAuth = require('../../middleware/tokenAuth')
 const entities = require('html-entities').AllHtmlEntities;
+const isAdmin = require('../../middleware/isAdmin')
 
 const Ticket = require('../../models/Ticket')
 const User = require('../../models/User')
@@ -16,23 +17,28 @@ router.get('/', (req, res) => {
 
   if (search && project) {
     Ticket.find({title: {"$regex": search, "$options" : "i"}, project}).populate('project').populate('submitter')
+      .sort({last_updated: -1})
       .then(tickets => res.json(tickets))
   }
   else if (search) {
     Ticket.find({title: {"$regex": search, "$options" : "i"}}).populate('project').populate('submitter')
+      .sort({last_updated: -1})
       .then(tickets => res.json(tickets))
   }
   else if (project) {
     Ticket.find({project}).populate("project").populate('project').populate('submitter')
+      .sort({last_updated: -1})
       .then(tickets => res.json(tickets))
   }
   else if (_id) {
     Ticket.findOne({_id}).populate("project").populate('project').populate('submitter')
+      .sort({last_updated: -1})
       .then(tickets => res.json(tickets))
   }
   else {
      Ticket.find({}).populate('project').populate('submitter')
-       .then(tickets => res.json(tickets))
+      .sort({last_updated: -1})
+      .then(tickets => res.json(tickets))
    }
 
 })
@@ -128,7 +134,7 @@ const deleteTicketValidation = [
 // @route   POST api/tickets/delete
 // @desc    Delete a ticket
 // @access  Private
-router.post('/delete', tokenAuth, deleteTicketValidation, (req, res) => {
+router.post('/delete', tokenAuth, isAdmin, deleteTicketValidation, (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})

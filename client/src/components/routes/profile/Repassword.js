@@ -67,7 +67,7 @@ const Repassword = props => {
         </div>
       </form>
 
-      <button className="btn"
+      <button className="btn greenish"
         onClick={onSubmit}
       >Update password</button>
 

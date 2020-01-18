@@ -56,16 +56,20 @@ const Table = props => {
             <tr>
               {Object.keys(row).map(col => {
                 if (col === "slug") {
-                  return (<Td key={uuid()}>
-                    <Link to={`${slugPrefix}${row.slug}`}>
-                      View <i style={{verticalAlign: "middle"}} className="material-icons">keyboard_arrow_right</i>
-                    </Link>
-                  </Td>)
+                  return (
+                    <Td key={uuid()}>
+                      <Link to={`${slugPrefix}${row.slug}`}>
+                        View <i style={{verticalAlign: "middle"}} className="material-icons">keyboard_arrow_right</i>
+                      </Link>
+                    </Td>
+                  )
                 }
                 else if (col ==="last_updated") {
-                  return (<Td key={uuid()}>
-                    <Moment date={row[col]} format="DD/MM/YY HH:mm"/>
-                  </Td>)
+                  return (
+                    <Td key={uuid()}>
+                      <Moment date={row[col]} format="DD/MM/YY HH:mm"/>
+                    </Td>
+                  )
                 }
                 else {
                   return <Td key={uuid()}>{row[col]}</Td>
@@ -75,7 +79,7 @@ const Table = props => {
           )
         : <tr><Empty colSpan={"100%"}>{isLoading || showLoading ? 'loading...' : 'No results found'}</Empty></tr>}
       </tbody>
-      
+
     </TableContainer>
   )
 

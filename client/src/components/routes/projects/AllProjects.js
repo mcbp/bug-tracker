@@ -16,11 +16,12 @@ const AllProjects = props => {
 
   return (
     <PageContainer title="Projects">
-      <ExpandingModule title="Create a new project" icon="playlist_add" color="#67d8cd">
+      <ExpandingModule title="Create a new project" icon="playlist_add">
         <NewProject/>
       </ExpandingModule>
       <Table
         headings={["Project", "Description", ""]}
+        headerColor={"#16bac5"}
         data={projects.map(({name, description, slug}) => ({name, description, slug}))}
         slugPrefix="/projects/"
       />

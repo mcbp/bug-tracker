@@ -32,7 +32,7 @@ const UserList = props => {
     & thead {
       font-family: 'Alata';
       font-size: 18px;
-      background-color: #67c688;
+      background-color: #16bac5;
       color: #fff;
     }
     & tbody > tr {

@@ -14,7 +14,7 @@ const DemoLogin = props => {
   }
 
   return (
-    <button className="btn" style={{marginLeft: "10px"}}
+    <button className="btn greenish" style={{marginLeft: "10px"}}
       onClick={onSubmit}
     >
       Demo login

@@ -82,7 +82,7 @@ const Login = props => {
           </div>
         </form>
 
-        <button className="btn"
+        <button className="btn greenish"
           onClick={onSubmit}
         >Log In</button>
 

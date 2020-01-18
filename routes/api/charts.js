@@ -22,6 +22,7 @@ router.get('/tickets-by-priority', (req, res) => {
       }
     }
   ])
+    .sort({_id: 1})
     .then(data => {
       res.json(data)
     })
@@ -63,6 +64,7 @@ router.get('/tickets-by-status', (req, res) => {
       }
     }
   ])
+    .sort({_id: -1})
     .then(data => {
       res.json(data)
     })

@@ -72,7 +72,7 @@ const Rename = props => {
         </div>
       </form>
 
-      <button className="btn"
+      <button className="btn greenish"
         onClick={onSubmit}
       >Update name</button>
 

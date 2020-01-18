@@ -12,11 +12,12 @@ const GlobalNotification = props => {
     position: "fixed",
     bottom: 0,
     right: 0,
-    top: "10vh",
+    left: 0,
+    top: "90vh",
     height: 0,
     display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    alignItems: "center",
     flexDirection: "column",
     margin: "0 20px"
   }

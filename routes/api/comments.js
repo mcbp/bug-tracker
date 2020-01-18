@@ -35,8 +35,6 @@ router.post('/', tokenAuth, newCommentValidation, (req, res) => {
 
   const { ticket, submitter, text } = req.body
 
-  console.log(req.body)
-
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})

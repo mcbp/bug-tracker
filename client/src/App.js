@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import { loadUser } from './actions/authActions'
-import { createNotification } from './actions/errorActions'
 
 import Navbar from './components/layout/Navbar'
 import Sidebar from './components/layout/Sidebar'
@@ -36,7 +35,7 @@ const Main = styled.main`
 
 const App = props => {
 
-  const { loadUser, createNotification } = props
+  const { loadUser } = props
 
   const location = useLocation()
 
@@ -77,4 +76,4 @@ const App = props => {
   )
 }
 
-export default connect(null, { loadUser, createNotification })(App)
+export default connect(null, { loadUser })(App)

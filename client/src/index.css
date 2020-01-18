@@ -129,17 +129,17 @@ nav .brand-logo {
 .input-field input[type=text]#search:focus + label,
 .green-form .input-field input[type=text]:focus + label,
 .green-form .input-field textarea:focus + label {
-  color: #67c688;
+  color: #16bac5;
 }
 .input-field input[type=text].select-dropdown:focus,
 .input-field input[type=text]#search:focus,
 .green-form .input-field input[type=text]:focus,
 .green-form .input-field textarea:focus {
-  border-bottom: 1px solid #67c688;
-  box-shadow: 0 1px 0 0 #67c688;
+  border-bottom: 1px solid #16bac5;
+  box-shadow: 0 1px 0 0 #16bac5;
 }
 .green-form .dropdown-content li > a, .purple-green .dropdown-content li > span {
-  color: #67c688;
+  color: #16bac5;
 }
 
 .icon-suffix {
@@ -155,9 +155,9 @@ nav .brand-logo {
 .btn.purp {background-color: #b886f4;}
 .btn.purp:hover {background-color: #a160f0;}
 .btn.purp:focus {background-color: #9349ee;}
-.btn.greenish {background-color: #67c688 !important;}
-.btn.greenish:hover {background-color: #4EAD6F !important;}
-.btn.greenish:focus {background-color: #349355 !important;}
+.btn.greenish {background-color: #16bac5 !important;}
+.btn.greenish:hover {background-color: #14aab4 !important;}
+.btn.greenish:focus {background-color: #1399a2 !important;}
 .btn.reddish {background-color: #d66853 !important;}
 .btn.reddish:hover {background-color: #c6482f !important;}
 .btn.reddish:focus {background-color: #a9422d !important;}

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const ExpandingModule = props => {
 
-  const { children, title, icon, color } = props
+  const { children, title, icon } = props
 
   const Title = styled.div`
     font-family: 'Alata';

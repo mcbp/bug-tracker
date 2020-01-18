@@ -13,7 +13,7 @@ import {
   REPASSWORD_SUCCESS,
   REPASSWORD_FAIL
 } from '../actions/types'
-import { returnErrors } from './errorActions'
+import { returnErrors, createNotification } from './errorActions'
 
 // Check token then load user - auto sign in
 export const loadUser = () => (dispatch, getState) => {
@@ -21,10 +21,13 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING })
 
   axios.get('/api/auth/user', tokenConfig(getState))
-    .then(res => dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
+      dispatch(createNotification("Logged in as " + res.data.name, "Info"))
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status))
       dispatch({
@@ -69,10 +72,12 @@ export const login = ({email, password}) => dispatch => {
   const body = JSON.stringify({email, password})
 
   axios.post('/api/auth', body, config)
-    .then(res => dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'))
       dispatch({
@@ -81,10 +86,9 @@ export const login = ({email, password}) => dispatch => {
     })
 }
 
-export const logout = () => {
-  return {
-    type: LOGOUT_SUCCESS
-  }
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT_SUCCESS })
+  dispatch(createNotification("Logged out", "Info"))
 }
 
 export const rename = (name) => (dispatch, getState) => {
