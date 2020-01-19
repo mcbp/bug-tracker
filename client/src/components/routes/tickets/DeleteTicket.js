@@ -7,8 +7,7 @@ import { clearErrors } from '../../../actions/errorActions'
 
 const DeleteTicket = props => {
 
-  const { tickets, projects, error,
-    clearErrors, deleteTicket, currentTicket } = props
+  const { error, clearErrors, deleteTicket, currentTicket } = props
 
   const [deleteTitle, setDeleteTitle] = useState("")
   const [msg, setMsg] = useState("")

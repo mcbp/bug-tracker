@@ -15,7 +15,7 @@ import { loadProjects } from '../../../actions/projectActions'
 const TicketDetail = props => {
 
   const { getCurrentTicket, removeCurrentTicket, currentTicket, loadProjects,
-    match:{params:{_id}} } = props
+    match:{params:{_id}}, history } = props
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -26,9 +26,9 @@ const TicketDetail = props => {
   // if deleted go to all tickets page
   useEffect(() => {
     if (currentTicket.isDeleted) {
-      props.history.replace(`/tickets`)
+      history.replace(`/tickets`)
     }
-  }, [currentTicket])
+  }, [currentTicket, history])
 
   useEffect(() => {
     getCurrentTicket(_id)

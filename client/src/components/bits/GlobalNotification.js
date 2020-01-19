@@ -1,7 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { motion, AnimatePresence } from "framer-motion";
-import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 
 const GlobalNotification = props => {

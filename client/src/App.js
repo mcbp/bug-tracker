@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react'
 import M from 'materialize-css'
 import styled from 'styled-components'
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import { loadUser } from './actions/authActions'

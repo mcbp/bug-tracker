@@ -7,7 +7,7 @@ import { clearErrors } from '../../../actions/errorActions'
 
 const NewTicket = props => {
 
-  const { tickets, projects, currentProject, submitter, error,
+  const { projects, submitter, error,
     clearErrors, createTicket, lockProject } = props
 
   const [title, setTitle] = useState("")
@@ -130,9 +130,7 @@ const mapStateToProps = state => {
   return {
     submitter: state.auth.user._id,
     isLoading: state.ticket.isLoading,
-    tickets: state.ticket.tickets,
     projects: state.project.projects,
-    currentProject: state.project.currentProject,
     error: state.error
   }
 }

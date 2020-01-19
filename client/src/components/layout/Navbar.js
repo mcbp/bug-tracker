@@ -22,7 +22,7 @@ const Navbar = props => {
   return (
     <nav>
       <div className="nav-wrapper container">
-        <a href="#" data-target="sidebar" className="top-nav sidenav-trigger full hide-on-large-only">
+        <a href="/" data-target="sidebar" className="top-nav sidenav-trigger full hide-on-large-only">
           <i className="material-icons">menu</i>
         </a>
         <Link to="/" className="brand-logo">Bug Tracker</Link>

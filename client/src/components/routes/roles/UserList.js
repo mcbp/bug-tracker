@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { loadUsers, selectUser } from '../../../actions/roleActions'

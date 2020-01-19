@@ -14,7 +14,7 @@ import { getCurrentProject, removeCurrentProject } from '../../../actions/projec
 const ProjectDetail = props => {
 
   const { getCurrentProject, currentProject, removeCurrentProject,
-    match:{params:{slug}} } = props
+    match:{params:{slug}}, history } = props
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -48,12 +48,12 @@ const ProjectDetail = props => {
   // if slug updates change url
   useEffect(() => {
     if (currentProject.slug && currentProject.slug !== slug) {
-      props.history.replace(`/projects/${currentProject.slug}`)
+      history.replace(`/projects/${currentProject.slug}`)
     }
     if (currentProject.isDeleted) {
-      props.history.replace(`/projects`)
+      history.replace(`/projects`)
     }
-  }, [slug, currentProject])
+  }, [slug, currentProject, history])
 
   if (!currentProject) return null
 

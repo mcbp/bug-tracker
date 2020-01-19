@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Moment from 'react-moment'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -11,7 +11,7 @@ const AllComments = props => {
   useEffect(() => {
     loadComments(currentTicket)
     return () => clearComments()
-  }, [loadComments, clearComments])
+  }, [currentTicket, loadComments, clearComments])
 
   const CommentContainer = styled.div`
     & > *:last-child {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ResponsiveContainer, BarChart, Bar, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+  XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 const TicketsByStatus = props => {
 

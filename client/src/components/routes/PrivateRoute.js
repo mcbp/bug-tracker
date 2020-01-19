@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom"
 import { motion } from 'framer-motion'
-import FadeInTransition from '../bits/FadeInTransition'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 

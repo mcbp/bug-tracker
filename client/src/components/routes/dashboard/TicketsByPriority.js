@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ResponsiveContainer, BarChart, Bar, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+  XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 const TicketsByPriority = props => {
 
@@ -16,7 +16,7 @@ const TicketsByPriority = props => {
             case 1: return data._id = "High"
             case 2: return data._id = "Medium"
             case 3: return data._id = "Low"
-            default: return
+            default: return null
           }
         })
         setData(res.data)

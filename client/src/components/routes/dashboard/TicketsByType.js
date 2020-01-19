@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import LoadingSpinner from '../../bits/LoadingSpinner'
 import styled from 'styled-components'
 import axios from 'axios'
-import { ResponsiveContainer, PieChart, Pie, Legend, Tooltip, Cell } from 'recharts'
+import { ResponsiveContainer, PieChart, Pie, Tooltip, Cell } from 'recharts'
 
 const TicketsByType = props => {
 
