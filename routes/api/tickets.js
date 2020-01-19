@@ -13,33 +13,26 @@ const User = require('../../models/User')
 // @access  Public
 router.get('/', (req, res) => {
 
-  const { search, id: _id, project } = req.query
+  const { search, id: _id, project, status } = req.query
 
-  if (search && project) {
-    Ticket.find({title: {"$regex": search, "$options" : "i"}, project}).populate('project').populate('submitter')
-      .sort({last_updated: -1})
-      .then(tickets => res.json(tickets))
-  }
-  else if (search) {
-    Ticket.find({title: {"$regex": search, "$options" : "i"}}).populate('project').populate('submitter')
-      .sort({last_updated: -1})
-      .then(tickets => res.json(tickets))
-  }
-  else if (project) {
-    Ticket.find({project}).populate("project").populate('project').populate('submitter')
-      .sort({last_updated: -1})
-      .then(tickets => res.json(tickets))
-  }
-  else if (_id) {
+  // Single ticket request
+  if (_id) {
     Ticket.findOne({_id}).populate("project").populate('project').populate('submitter')
       .sort({last_updated: -1})
       .then(tickets => res.json(tickets))
+      .catch(err => console.log(err))
   }
+  // Multi ticket request
   else {
-     Ticket.find({}).populate('project').populate('submitter')
-      .sort({last_updated: -1})
-      .then(tickets => res.json(tickets))
-   }
+    let query = {}
+    if (search) query.title = {"$regex": search, "$options" : "i"}
+    if (project) query.project = project
+    if (status) query.status = status
+    Ticket.find(query).populate('project').populate('submitter')
+     .sort({last_updated: -1})
+     .then(tickets => res.json(tickets))
+     .catch(err => console.log(err))
+  }
 
 })
 

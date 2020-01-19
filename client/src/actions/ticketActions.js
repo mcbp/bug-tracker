@@ -17,13 +17,14 @@ import {
 import { returnErrors, createNotification } from './errorActions'
 import { tokenConfig } from './authActions'
 
-export const loadTickets = (project, search) => (dispatch) => {
+export const loadTickets = (project, search, status) => (dispatch) => {
 
   dispatch({ type: TICKETS_LOADING })
 
   let url = `/api/tickets?`
   if (project) url += `project=${project}&`
   if (search) url += `search=${search}&`
+  if (status) url += `status=${status}&`
 
   axios.get(url)
     .then(res => dispatch({

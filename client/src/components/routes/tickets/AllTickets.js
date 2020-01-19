@@ -9,36 +9,32 @@ import { loadProjects } from '../../../actions/projectActions'
 const AllTickets = props => {
 
     const { loadTickets, clearTickets, tickets, isLoading,
-      loadProjects, projects,
-      projectFilter, showFilter, showSearch, headerColor } = props
+      loadProjects, projects, projectFilter, showProject,
+      showSearch, statusFilter, showStatus, headerColor } = props
 
     const [currentProjectFilter, setCurrentProjectFilter] = useState(projectFilter)
     const [searchQuery, setSearchQuery] = useState("")
+    const [currentStatusFilter, setCurrentStatusFilter] = useState(statusFilter)
 
     useEffect(() => {
-      loadTickets(currentProjectFilter, searchQuery)
+      loadTickets(currentProjectFilter, searchQuery, currentStatusFilter)
       return () => clearTickets()
-    }, [loadTickets, currentProjectFilter, searchQuery, clearTickets])
+    }, [loadTickets, currentProjectFilter, searchQuery, currentStatusFilter, clearTickets])
 
     useEffect(() => {
       loadProjects()
     }, [loadProjects])
 
-    const select = useRef(null)
+    const projectSelect = useRef(null)
+    const statusSelect = useRef(null)
     useEffect(() => {
-      const elem = select.current
-      M.FormSelect.init(elem)
+      M.FormSelect.init(projectSelect.current)
+      M.FormSelect.init(statusSelect.current)
     }, [tickets, projects])
-
-    const Container = styled.div`
-      overflow-x: auto;
-      margin: -5px;
-      padding: 5px;
-    `
 
     const filterComponent = (
       <div className = "input-field col s12 m6" >
-        <select ref={select} onChange={e => setCurrentProjectFilter(e.target.value)}>
+        <select ref={projectSelect} onChange={e => setCurrentProjectFilter(e.target.value)}>
           <option value="">All Projects</option>
             {projects.map(
               ({_id, name}) => <option key={_id} value={_id}>{name}</option>)}
@@ -55,10 +51,23 @@ const AllTickets = props => {
       </div>
     )
 
+    const statusComponent = (
+      <div className = "input-field col s12 m6" >
+        <select ref={statusSelect} onChange={e => setCurrentStatusFilter(e.target.value)}>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Closed">Closed</option>
+          <option value="">All Status</option>
+        </select>
+        <label>Filter by status</label>
+      </div>
+    )
+
     return (
-      <Container className="row">
-        {showFilter && filterComponent}
+      <div className="row" style={{overflowX: "auto", overflowY: "hidden", margin: "-5px", padding: "5px", minHeight: "300px"}}>
+        {showProject && filterComponent}
         {showSearch && searchComponent}
+        {showStatus && statusComponent}
         <Table
           isLoading={isLoading}
           headings={['Ticket', 'Project', 'Type', 'Status', 'Last updated', '']}
@@ -68,7 +77,7 @@ const AllTickets = props => {
           slugPrefix={"/tickets/"}
           headerColor={headerColor}
         />
-      </Container>
+      </div>
     )
   }
 

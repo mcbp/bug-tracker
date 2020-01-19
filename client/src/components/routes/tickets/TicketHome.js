@@ -18,8 +18,10 @@ const TicketHome = props => {
         <NewTicket />
       </ExpandingModule>
       <AllTickets
-        showFilter
+        showProject
         showSearch
+        showStatus
+        statusFilter={"Open"}
         headerColor={'#b886f4'}
       />
     </PageContainer>
