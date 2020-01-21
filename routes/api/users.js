@@ -108,7 +108,7 @@ router.post('/name', tokenAuth, nameValidation, (req, res) => {
 
   const { _id, name, email } = req.body
 
-  if (email === 'demouser@examle.com') return res.status(422).json({msg: ['Not allowed to update the DemoUser name']})
+  if (email === 'demouser@example.com') return res.status(422).json({msg: ['Not allowed to update the DemoUser name']})
   // Update a users name
   User.findOneAndUpdate({_id}, {$set: {name, last_updated: Date.now()}}, {new: true, upsert: true})
     .select('-password')
