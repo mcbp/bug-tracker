@@ -93,6 +93,7 @@ const ProjectDetail = props => {
           projectFilter={currentProject._id}
           showSearch
           showStatus
+          statusFilter={"Open"}
           headerColor={'#b886f4'}
         />
       </PageContainer>

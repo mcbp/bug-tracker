@@ -47,6 +47,7 @@ router.get('/tickets-by-type', (req, res) => {
       }
     }
   ])
+    .sort({_id: 1})
     .then(data => {
       res.json(data)
     })

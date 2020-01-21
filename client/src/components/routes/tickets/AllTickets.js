@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import M from 'materialize-css'
-import styled from 'styled-components'
 import Table from '../../bits/Table'
 import { connect } from 'react-redux'
 import { loadTickets, clearTickets } from '../../../actions/ticketActions'

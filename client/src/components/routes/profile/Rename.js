@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import Fade from '../../bits/Fade'
-import Notification from '../../bits/Notification'
 import FormInstructions from '../../bits/FormInstructions'
 import ErrorMessage from '../../bits/ErrorMessage'
 import { connect } from 'react-redux'
@@ -54,9 +52,6 @@ const Rename = props => {
   return (
     <div className="module">
       <h2>Change name</h2>
-      <Fade show={successfulRename}>
-        <Notification message={"Name updated"} bg={"success"}/>
-      </Fade>
       <FormInstructions instructions={instructions}/>
       { msg && <ErrorMessage msg={msg} />}
 

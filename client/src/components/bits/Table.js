@@ -15,7 +15,6 @@ const Table = props => {
   useEffect(() => {
     let timer
     if (!data.length) {
-      console.log("start")
       setShowLoading(true)
       timer = setTimeout(() => setShowLoading(false), 750)
     }

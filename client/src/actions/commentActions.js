@@ -7,7 +7,7 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAIL
 } from '../actions/types'
-import { returnErrors } from './errorActions'
+import { returnErrors, createNotification } from './errorActions'
 import { tokenConfig } from './authActions'
 
 export const loadComments = (ticket) => (dispatch) => {
@@ -38,11 +38,13 @@ export const createComment = (ticket, submitter, text) => (dispatch, getState) =
   const body = JSON.stringify({ticket, submitter, text})
 
   axios.post('/api/comments', body, tokenConfig(getState))
-    .then(res => dispatch({
+    .then(res => {
+      dispatch({
         type: CREATE_COMMENT_SUCCESS,
         payload: res.data
       })
-    )
+      dispatch(createNotification("Comment posted", "success"))
+    })
     .then(() => dispatch(loadComments(ticket)))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'CREATE_COMMENT_FAIL'))

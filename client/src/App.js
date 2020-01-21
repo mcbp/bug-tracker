@@ -6,6 +6,7 @@ import { Route, Switch, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import { loadUser } from './actions/authActions'
 
+import Welcome from './components/bits/Welcome'
 import Navbar from './components/layout/Navbar'
 import Sidebar from './components/layout/Sidebar'
 import PrivateRoute from './components/routes/PrivateRoute'
@@ -46,6 +47,8 @@ const App = props => {
 
   return (
     <Fragment>
+
+      <Welcome showPopUp={true}/>
 
       <Header>
         <Navbar />

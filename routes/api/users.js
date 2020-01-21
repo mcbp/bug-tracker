@@ -94,7 +94,7 @@ router.post('/', registerValidation, (req, res) => {
 
 // Validation middleware
 const nameValidation = [
-  check('name').not().isEmpty().trim().escape().withMessage('New name is required')
+  check('name').not().isEmpty().trim().escape().withMessage('New name is required'),
 ]
 
 // @route   POST api/users/name
@@ -106,7 +106,9 @@ router.post('/name', tokenAuth, nameValidation, (req, res) => {
     return res.status(422).json({msg: errors.array().map(err => err['msg'])})
   }
 
-  const { _id, name } = req.body
+  const { _id, name, email } = req.body
+
+  if (email === 'demouser@examle.com') return res.status(422).json({msg: ['Not allowed to update the DemoUser name']})
   // Update a users name
   User.findOneAndUpdate({_id}, {$set: {name, last_updated: Date.now()}}, {new: true, upsert: true})
     .select('-password')

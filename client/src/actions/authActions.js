@@ -48,10 +48,13 @@ export const register = ({name, email, password}) => dispatch => {
   const body = JSON.stringify({name, email, password})
 
   axios.post('/api/users', body, config)
-    .then(res => dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data
-    }))
+    .then(res => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      })
+      dispatch(createNotification("Account created", "info"))
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'))
       dispatch({
@@ -77,6 +80,8 @@ export const login = ({email, password}) => dispatch => {
         type: LOGIN_SUCCESS,
         payload: res.data
       })
+      console.log(res.data)
+      dispatch(createNotification("Logged in as " + res.data.user.name, "info"))
     })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'))
@@ -97,10 +102,13 @@ export const rename = (name) => (dispatch, getState) => {
     .then(res => {
       const body = JSON.stringify({...res.data, ...name})
       axios.post('/api/users/name', body, tokenConfig(getState))
-        .then(res => dispatch({
-          type: RENAME_SUCCESS,
-          payload: res.data
-        }))
+        .then(res => {
+          dispatch({
+            type: RENAME_SUCCESS,
+            payload: res.data
+          })
+          dispatch(createNotification("Name udpated", "success"))
+        })
         .catch(err => {
           dispatch(returnErrors(err.response.data, err.response.status, 'RENAME_FAIL'))
           dispatch({
