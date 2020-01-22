@@ -9,7 +9,7 @@ const Welcome = ({showPopUp}) => {
   if (!showPopUp) return null
 
   const Container = styled(motion.div)`
-    position: absolute;
+    position: fixed;
     background-color: rgba(0,0,0,0.4);
     top: 0; bottom: 0;
     left: 0; right: 0;
@@ -47,7 +47,7 @@ const Welcome = ({showPopUp}) => {
           <h2>Bug Tracker Demo</h2>
           <div className="modal-content">
             <p>Welcome to the demo of my bug management web application.</p>
-            <p>Features include issue capturing and tracking, multiple project support, and user role management.</p>
+            <p>Features include issue capturing and tracking, multiple project support, JWT based authentication, and user role management.</p>
             <p>Most functionality is secured behind login, however a demo login is available if you do not want to create an account.</p>
             <button className="btn greenish" onClick={() => setIsOpen(false)}>Okay</button>
           </div>
